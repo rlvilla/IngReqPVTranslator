@@ -1,7 +1,6 @@
 package listadoModulos;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 
 public class ListadoModulo {
@@ -17,7 +16,7 @@ public class ListadoModulo {
 	}
 
 	public static void main(String[] args) {
-		final JFrame window = new JFrame("Lists application");
+		final JFrame window = new JFrame("Listado Módulos");
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createGUI(window);
