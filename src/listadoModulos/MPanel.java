@@ -12,7 +12,6 @@ public class MPanel extends Panel {
 	private JButton bCargarDatos = new JButton("Cargar Datos");
 	private JButton bVerMedidas = new JButton("Ver Medidas");
 	private JButton bEliminarModulo = new JButton("Eliminar Modulo");
-	private JButton bAnadirModulo = new JButton("Añadir Módulo");
 
 	public MPanel(){
 		this.setLayout(new BoxLayout(this, 1));
@@ -23,10 +22,9 @@ public class MPanel extends Panel {
 		pList.add(listaM, BorderLayout.SOUTH);
 
 		JPanel pButtons = new JPanel();
-		pButtons.setLayout(new GridLayout(2, 2));
+		pButtons.setLayout(new GridLayout(1, 3));
 		pButtons.add(bCargarDatos);
 		pButtons.add(bVerMedidas);
-		pButtons.add(bAnadirModulo);
 		pButtons.add(bEliminarModulo);
 
 		this.add(pList);
