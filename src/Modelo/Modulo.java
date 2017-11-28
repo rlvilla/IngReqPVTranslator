@@ -21,4 +21,8 @@ public class Modulo {
         this(name,0,0,0,0);
     }
 
+    public String toString(){
+        return("Name: " +name+ " alpha, beta, gamma : " + alpha+gamma+beta);
+    }
+
 }

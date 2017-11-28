@@ -17,13 +17,4 @@ public class ListadoMedidas {
         window.setSize(500,600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-    public static void main(String[] args){
-        final JFrame window = new JFrame("List application");
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                CreateGUI(window);
-            }
-        });
-    }
 }
