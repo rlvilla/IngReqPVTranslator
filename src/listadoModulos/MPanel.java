@@ -11,7 +11,7 @@ public class MPanel extends Panel {
     private JList listaM = new JList();
 	private JScrollPane listaMScroll = new JScrollPane(listaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	private JButton bCargarMedidas = new JButton("Cargar Datos");
+	private JButton bCargarMedidas = new JButton("Cargar Medidas");
 	private JButton bVerMedidas = new JButton("Ver Medidas");//TBC ver campañas
 	private JButton bEliminarModulo = new JButton("Eliminar Modulo");
 	private JButton bAnadirModulo = new JButton("Añadir Módulo");
