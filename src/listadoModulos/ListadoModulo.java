@@ -16,7 +16,7 @@ public class ListadoModulo {
 		window.setContentPane(panel);
 		window.setVisible(true);
 		window.pack();
-		window.setSize(500, 600);
+		window.setSize(500,600);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

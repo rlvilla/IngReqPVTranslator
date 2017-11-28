@@ -8,8 +8,8 @@ import javax.swing.SwingUtilities;
 
 public class ListadoMedidas {
     public static void CreateGUI(JFrame window){
-        MPanel panel =  new MPanel();
-        MController ctr = new MController(panel);
+        MedidasPanel panel =  new MedidasPanel();
+        MedidasController ctr = new MedidasController(panel);
         panel.setController(ctr);
         window.setContentPane(panel);
         window.setVisible(true);
