@@ -1,24 +1,23 @@
 package listadoModulos;
 
-import Modelo.Modulo;
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
 
 public class MPanel extends Panel {
 	//Componentes
-    private JTextArea listaM = new JTextArea(20,20);
+    private JList listaM = new JList();
 	private JScrollPane listaMScroll = new JScrollPane(listaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	private JButton bCargarDatos = new JButton("Cargar Datos");
+	private JButton bCargarMedidas = new JButton("Cargar Datos");
 	private JButton bVerMedidas = new JButton("Ver Medidas");//TBC ver campañas
 	private JButton bEliminarModulo = new JButton("Eliminar Modulo");
 	private JButton bAnadirModulo = new JButton("Añadir Módulo");
 
 	//Constantes de comando
-    static final String CARGARDATOS = "Cargar datos";
+    static final String CARGARMEDIDAS = "Cargar medidas";
     static final String VERMEDIDAS = "Ver medidas"; //TBC ver campañas
     static final String ANADIRMODULO = "Añadir modulo";
     static final String ELIMINARMODULO = "Eliminar modulo";
@@ -28,21 +27,20 @@ public class MPanel extends Panel {
     public MPanel(){
 		this.setLayout(new BoxLayout(this, 1));
 		JPanel pList = new JPanel();
-		listaM.setEditable(false);
 		pList.setLayout(new BoxLayout(pList, 1));
-		pList.add(listaMScroll, BorderLayout.NORTH);
+		//pList.add(listaMScroll, BorderLayout.NORTH);
 		pList.add(listaM, BorderLayout.SOUTH);
 
 		JPanel pButtons = new JPanel();
 		pButtons.setLayout(new GridLayout(2, 2));
 
 		//Acciones de los botones
-		bCargarDatos.setActionCommand(CARGARDATOS);
+		bCargarMedidas.setActionCommand(CARGARMEDIDAS);
 		bVerMedidas.setActionCommand(VERMEDIDAS);
 		bAnadirModulo.setActionCommand(ANADIRMODULO);
 		bEliminarModulo.setActionCommand(ELIMINARMODULO);
 
-		pButtons.add(bCargarDatos);
+		pButtons.add(bCargarMedidas);
 		pButtons.add(bVerMedidas);//TBC ver campañas
 		pButtons.add(bAnadirModulo);
 		pButtons.add(bEliminarModulo);
@@ -52,9 +50,8 @@ public class MPanel extends Panel {
 	}
 
 	//Funciones
-    public void muestraModulos(){
-        //TODO
-        listaM.append("Aquí van los modulos, zunormah\n");
+    public void muestraModulos(String[] listaMod){
+        listaM.setListData(listaMod);
     }
 
     public void cargarDatos(){
@@ -74,6 +71,22 @@ public class MPanel extends Panel {
     }
 
 	public void setController(MController ctr) {
-		String as = listaM.getSelectedText();
+		bCargarMedidas.addActionListener(ctr);
+		bVerMedidas.addActionListener(ctr);
+		bAnadirModulo.addActionListener(ctr);
+		bEliminarModulo.addActionListener(ctr);
+
 	}
+
+    public static void createGUI(JFrame window) {
+        MPanel panel = new MPanel();
+        MController ctr = new MController(panel);
+        panel.setController(ctr);
+        window.setContentPane(panel);
+        ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARMODULOS));
+        window.setVisible(true);
+        window.pack();
+        window.setSize(500,600);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 }

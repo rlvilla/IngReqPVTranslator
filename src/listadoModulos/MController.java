@@ -12,7 +12,7 @@ public class MController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(MPanel.CARGARDATOS)) {
+		if (e.getActionCommand().equals(MPanel.CARGARMEDIDAS)) {
 			//TODO
 		}
 		if(e.getActionCommand().equals(MPanel.ANADIRMODULO)){
@@ -25,7 +25,7 @@ public class MController implements ActionListener {
             //TODO
         }
         if(e.getActionCommand().equals(MPanel.MOSTRARMODULOS)){
-            //TODO
+            panel.muestraModulos(ListadoModulo.leerListaModulo());
         }
 	}
 }
