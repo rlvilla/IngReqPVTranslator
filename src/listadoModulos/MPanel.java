@@ -14,6 +14,7 @@ public class MPanel extends Panel {
 		listaM.add(listaMScroll);
 		this.add(listaM);
 		JPanel Buttons = new JPanel();
+
 	}
 	public void setController(MController ctr) {
 		
