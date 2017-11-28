@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 public class MController implements ActionListener {
 	private MPanel panel;
+	//
 
 	public MController(MPanel p) {
 		panel = p;
