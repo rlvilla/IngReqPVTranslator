@@ -27,4 +27,8 @@ public class Modulo {
         return("Name: " +name+ "\nAlpha: "+alpha+"\nBeta: "+beta+"\nGamma: "+gamma+"\nKappa: "+kappa+"\n");
     }
 
+    public String getName(){
+        return name;
+    }
+
 }
