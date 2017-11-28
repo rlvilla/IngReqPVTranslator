@@ -17,23 +17,13 @@ CREATE TABLE MEDIDA(
   VPmax NUMERIC,
   FF NUMERIC,
   VViento NUMERIC,
-  VVientoIni NUMERIC,
-  VVientoFin NUMERIC,
   DirViento NUMERIC,
-  DirVientoIni NUMERIC,
-  DirVientoFin NUMERIC,
   HumedadRel  NUMERIC,
   HumedadIni NUMERIC,
   HumedadFin NUMERIC,
   Piranometro NUMERIC,
-  PiranometroIni NUMERIC,
-  PiranometroFin NUMERIC,
   RTD NUMERIC,
-  RTDIni NUMERIC,
-  RTDFin NUMERIC,
   CelulaIso NUMERIC,
-  CelulaIsoIni NUMERIC,
-  CelulaIsoFin NUMERIC,
   FOREIGN KEY Nombre REFERENCES MODULO(NOMBRE)
   ON UPDATE CASCADE
   ON DELETE CASCADE
