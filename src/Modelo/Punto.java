@@ -10,4 +10,8 @@ public class Punto {
         corriente = I;
         potencia = W;
     }
+
+    public String toString(){
+        return(order+":\n"+"V: "+tension+"\nI: "+ corriente+"\nP: "+potencia);
+    }
 }

@@ -2,6 +2,7 @@ package listadoModulos;
 
 import javax.swing.*;
 import Modelo.*;
+import listadoMedidas.ListadoMedidas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,11 @@ public class ListadoModulo {
 
 	public static void main(String[] args) {
 		BD miBD = BD.getInstance();
-		miBD.insert("INSERT INTO MODULO(Nombre, alpha, beta, gamma, kappa) values (hola, 1, 2, 3, 4);");
+		//miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa) values ('adios', 1, 2, 3, 4);");
 		List<Modulo> listaMod = new ArrayList<>();
-		for (Object[] mod:miBD.select("SELECT * from MODULO")) {
-			listaMod.add(new Modulo((String)mod[0]));
+		for (Object[] mod:miBD.select("SELECT * FROM MODULO")) {
+			listaMod.add(new Modulo((String)mod[0],Float.parseFloat((String)mod[1]), Float.parseFloat((String)mod[2]),
+					Float.parseFloat((String)mod[3]),Float.parseFloat((String)mod[4])));
 		}
 		printConsole(listaMod);
 		final JFrame window = new JFrame("Listado Módulos");
@@ -33,6 +35,10 @@ public class ListadoModulo {
 				createGUI(window);
 			}
 		});
+	}
+
+	private static float selectData(BD miBD, String str,String name){
+		return Float.parseFloat(miBD.selectEscalar("SELECT "+str+" FROM MODULO WHERE Nombre = "+name+";"));
 	}
 
 	private static void printConsole(List<Modulo> lista){

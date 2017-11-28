@@ -55,6 +55,7 @@ public class BD {
     private void cargarDDL() {
         // DDL va aqui
         //execute("CREATE TABLE user (name NUMBER PRIMARY KEY)");
+
     }
 
     private void leerDDL() {
@@ -142,7 +143,7 @@ public class BD {
         return result;
     }
 
-    private void borrarDB() {
+    public void borrarDB() {
         File file_db = new File(BD_FILE_NAME);
 
         if (file_db.exists())
