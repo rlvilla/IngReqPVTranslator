@@ -41,6 +41,7 @@ public class BD {
         }
     }
 
+    //Singleton
     public static BD getInstance() {
 
         if (instance == null) {
@@ -178,5 +179,6 @@ public class BD {
             System.err.println("Error al cerrar la base de datos");
         }
     }
+
 
 }
