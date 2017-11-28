@@ -4,6 +4,7 @@ import javax.swing.*;
 import Modelo.*;
 import listadoMedidas.ListadoMedidas;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ListadoModulo {
 		//miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa) values ('adios', 1, 2, 3, 4);");
 		List<Modulo> listaMod = leerModulo(miBD);
 		final JFrame window = new JFrame("Listado Módulos");
-		SwingUtilities.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
 				createGUI(window);
 			}
