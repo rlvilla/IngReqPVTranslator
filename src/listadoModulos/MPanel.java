@@ -45,6 +45,7 @@ public class MPanel extends Panel {
 		pButtons.add(bAnadirModulo);
 		pButtons.add(bEliminarModulo);
 
+		pButtons.setMinimumSize(new Dimension(500,100));
 		pButtons.setMaximumSize(new Dimension(500,100));//Ajusta el tamaño máximo de los botones a las dimensiones
 
 		this.add(pList);
@@ -58,7 +59,7 @@ public class MPanel extends Panel {
 
     public void cargarDatos(){
         //TODO
-    }
+	}
 
     public void anadirModulo(){
         //TODO
@@ -89,6 +90,7 @@ public class MPanel extends Panel {
         window.setVisible(true);
         window.pack();
         window.setSize(500,600);
+        window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
