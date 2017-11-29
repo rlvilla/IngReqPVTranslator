@@ -29,7 +29,7 @@ public class MPanel extends Panel {
 		JPanel pList = new JPanel();
 		pList.setLayout(new BoxLayout(pList, 1));
 		//pList.add(listaMScroll, BorderLayout.NORTH);
-		pList.add(listaM, BorderLayout.SOUTH);
+		pList.add(listaM);
 
 		JPanel pButtons = new JPanel();
 		pButtons.setLayout(new GridLayout(2, 2));
@@ -44,6 +44,8 @@ public class MPanel extends Panel {
 		pButtons.add(bVerMedidas);//TBC ver campañas
 		pButtons.add(bAnadirModulo);
 		pButtons.add(bEliminarModulo);
+
+		pButtons.setMaximumSize(new Dimension(500,100));//Ajusta el tamaño máximo de los botones a las dimensiones
 
 		this.add(pList);
 		this.add(pButtons);
