@@ -39,7 +39,7 @@ public class ListadoModulo {
 
 	public static void anadirModulo(String name, String alpha, String beta, String gamma, String kappa){
 	    miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa) values ('"+name+"', "+alpha+
-                                                                            ", "+beta+", "+gamma+", "+kappa+");");
+                ", "+beta+", "+gamma+", "+kappa+");");
     }
 
     public static void eliminarModulo(String name){
