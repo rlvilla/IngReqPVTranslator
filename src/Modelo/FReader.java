@@ -89,6 +89,7 @@ public class FReader {
                 sc.nextLine();
             }
         }
+        sc.nextLine();//salto linea 37
         for (int i = 0; i < n; i++) {
             String[] valores = leerLineaPuntos(sc.nextLine());
             puntos.put("" + i, valores);

@@ -28,7 +28,7 @@ public class MController implements ActionListener {
             if (ret == JFileChooser.APPROVE_OPTION){
                 File file = jfile.getSelectedFile();
                 try {
-                    String[] modulo = freader.addModuloFichero(file);
+                    String[] modulo = freader.leerFicheroModulo(file);
                     ListadoModulo.anadirModulo(modulo[0], modulo[1], modulo[3], modulo[5], modulo[7]);
                     panel.muestraModulos(ListadoModulo.leerListaModulo());
                 } catch(FileNotFoundException error){
