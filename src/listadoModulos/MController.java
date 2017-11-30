@@ -1,6 +1,8 @@
 package listadoModulos;
 
+import Modelo.BD;
 import Modelo.FReader;
+import listadoCampana.CPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +51,13 @@ public class MController implements ActionListener {
         }
         if(e.getActionCommand().equals(MPanel.VERCAMPANAS)){
             String se = panel.getSelect();
-
+            //ListadoModulo.miBD = BD.getInstance();
+            final JFrame window = new JFrame("Listado Campana");
+            SwingUtilities.invokeLater(new Runnable(){
+                public void run() {
+                    CPanel.createGUI(window);
+                }
+            });
         }
         if(e.getActionCommand().equals(MPanel.MOSTRARMODULOS)){
             panel.muestraModulos(ListadoModulo.leerListaModulo());

@@ -27,7 +27,7 @@ public class CPanel extends Panel {
         pList.add(listaCScroll);
 
         JPanel pButtons = new JPanel();
-        pButtons.setLayout(new GridLayout(1, 5));
+        pButtons.setLayout(new GridLayout(1, 2));
 
         //Acciones de los botones
         bVerMedidas.setActionCommand(VERMEDIDAS);
@@ -45,7 +45,7 @@ public class CPanel extends Panel {
     }
 
     //Funciones
-    public void muestraModulos(String[] listaCod){
+    public void muestraCampanas(String[] listaCod){
         listaC.setListData(listaCod);
     }
 
@@ -76,6 +76,6 @@ public class CPanel extends Panel {
         window.pack();
         window.setSize(800,400);
         //window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
