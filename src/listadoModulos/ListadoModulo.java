@@ -37,12 +37,12 @@ public class ListadoModulo {
 		}
 	}
 
-	private static void anadirModulo(String name, String alpha, String beta, String gamma, String kappa){
+	public static void anadirModulo(String name, String alpha, String beta, String gamma, String kappa){
 	    miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa) values ('"+name+"', "+alpha+
                                                                             ", "+beta+", "+gamma+", "+kappa+");");
     }
 
-    private static void eliminarModulo(String name){
+    public static void eliminarModulo(String name){
         miBD.delete("DELETE FROM MODULO WHERE Nombre = '" + name + "';");
     }
 }
