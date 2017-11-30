@@ -76,6 +76,10 @@ public class MPanel extends Panel {
         //TODO
     }
 
+    public String getSelect(){
+        return (String)listaM.getSelectedValue();
+    }
+
 	public void setController(MController ctr) {
 		bCargarModulo.addActionListener(ctr);
 		bVerMedidas.addActionListener(ctr);

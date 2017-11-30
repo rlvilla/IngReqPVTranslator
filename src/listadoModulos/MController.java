@@ -22,7 +22,6 @@ public class MController implements ActionListener {
                 File file = jfile.getSelectedFile();
             }
         }
-
 		if(e.getActionCommand().equals(MPanel.CARGARMEDIDAS)){
             JFileChooser jfile = new JFileChooser();
             int ret = jfile.showOpenDialog(panel);
@@ -32,7 +31,8 @@ public class MController implements ActionListener {
             }
         }
         if(e.getActionCommand().equals(MPanel.ELIMINARMODULO)){
-            //TODO
+            String se = panel.getSelect();
+            panel.muestraModulos(ListadoModulo.leerListaModulo());
         }
         if(e.getActionCommand().equals(MPanel.VERMEDIDAS)){
             //TODO
