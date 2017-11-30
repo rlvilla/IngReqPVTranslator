@@ -10,8 +10,8 @@ public class FReader {
     private String nalpha, nbeta, ngamma, nkappa, name;
     private String alpha, beta, gamma, kappa;
     private  int aux=0;
-    public void addModuloFichero(String fichero) throws FileNotFoundException{
-        Scanner sc = new Scanner(new File(fichero));
+    public void addModuloFichero(File fichero) throws FileNotFoundException{
+        Scanner sc = new Scanner(fichero);
         String [] as = new String[9];
         addModulo(as,sc);
         sc.close();
