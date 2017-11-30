@@ -11,13 +11,13 @@ public class MPanel extends Panel {
 	private JScrollPane listaMScroll = new JScrollPane(listaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	private JButton bCargarModulo = new JButton("Cargar Modulo");
-	private JButton bVerCampanas = new JButton("Ver Medidas");//TBC ver campañas
+	private JButton bVerCampanas = new JButton("Ver Campañas");//TBC ver campañas
 	private JButton bEliminarModulo = new JButton("Eliminar Modulo");
 	private JButton bCargarMedidas = new JButton("Cargar Medidas");
 
 	//Constantes de comando
     static final String CARGARMODULO = "Cargar modulo";
-    static final String VERCAMPANAS = "Ver medidas"; //TBC ver campañas
+    static final String VERCAMPANAS = "Ver campanas"; //TBC ver campañas
     static final String CARGARMEDIDAS = "Cargar medidas";
     static final String ELIMINARMODULO = "Eliminar modulo";
     static final String MOSTRARMODULOS = "Mostrar modulos";
@@ -59,14 +59,6 @@ public class MPanel extends Panel {
     }
 
     public void cargarMedidas(){
-        //TODO
-    }
-
-    public void eliminarModulo(String el){
-
-    }
-
-    public void verCampanas(){
         //TODO
     }
 
