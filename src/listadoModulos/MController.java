@@ -48,7 +48,8 @@ public class MController implements ActionListener {
             panel.muestraModulos(ListadoModulo.leerListaModulo());
         }
         if(e.getActionCommand().equals(MPanel.VERCAMPANAS)){
-            //TODO
+            String se = panel.getSelect();
+
         }
         if(e.getActionCommand().equals(MPanel.MOSTRARMODULOS)){
             panel.muestraModulos(ListadoModulo.leerListaModulo());
