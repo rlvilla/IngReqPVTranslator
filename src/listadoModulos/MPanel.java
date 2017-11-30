@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 
 public class MPanel extends Panel {
@@ -11,45 +12,47 @@ public class MPanel extends Panel {
     private JList listaM = new JList();
 	private JScrollPane listaMScroll = new JScrollPane(listaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	private JButton bCargarMedidas = new JButton("Cargar Medidas");
+	private JButton bCargarModulo = new JButton("Cargar Modulo");
 	private JButton bVerMedidas = new JButton("Ver Medidas");//TBC ver campañas
 	private JButton bEliminarModulo = new JButton("Eliminar Modulo");
-	private JButton bAnadirModulo = new JButton("Añadir Módulo");
+	private JButton bCargarMedidas = new JButton("Cargar Medidas");
 
 	//Constantes de comando
-    static final String CARGARMEDIDAS = "Cargar medidas";
+    static final String CARGARMODULO = "Cargar modulo";
     static final String VERMEDIDAS = "Ver medidas"; //TBC ver campañas
-    static final String ANADIRMODULO = "Añadir modulo";
+    static final String CARGARMEDIDAS = "Cargar medidas";
     static final String ELIMINARMODULO = "Eliminar modulo";
     static final String MOSTRARMODULOS = "Mostrar modulos";
 
     //Constructor
     public MPanel(){
-		this.setLayout(new BoxLayout(this, 1));
+		this.setLayout(new BorderLayout());
 		JPanel pList = new JPanel();
 		pList.setLayout(new BoxLayout(pList, 1));
-		//pList.add(listaMScroll, BorderLayout.NORTH);
-		pList.add(listaM);
+        listaM.setPreferredSize(new Dimension (200,200));
+        listaM.setFont(new Font("Arial",Font.BOLD,20));
+		pList.add(listaMScroll);
 
 		JPanel pButtons = new JPanel();
-		pButtons.setLayout(new GridLayout(2, 2));
+		pButtons.setLayout(new GridLayout(1, 5));
 
 		//Acciones de los botones
-		bCargarMedidas.setActionCommand(CARGARMEDIDAS);
+		bCargarModulo.setActionCommand(CARGARMODULO);
 		bVerMedidas.setActionCommand(VERMEDIDAS);
-		bAnadirModulo.setActionCommand(ANADIRMODULO);
+		bCargarMedidas.setActionCommand(CARGARMEDIDAS);
 		bEliminarModulo.setActionCommand(ELIMINARMODULO);
 
-		pButtons.add(bCargarMedidas);
-		pButtons.add(bVerMedidas);//TBC ver campañas
-		pButtons.add(bAnadirModulo);
+        pButtons.add(bCargarModulo);
+        pButtons.add(bCargarMedidas);
+        pButtons.add(new JLabel());
+        pButtons.add(bVerMedidas);//TBC ver campañas
 		pButtons.add(bEliminarModulo);
 
 		pButtons.setMinimumSize(new Dimension(500,100));
 		pButtons.setMaximumSize(new Dimension(500,100));//Ajusta el tamaño máximo de los botones a las dimensiones
 
-		this.add(pList);
-		this.add(pButtons);
+		this.add(pList, BorderLayout.CENTER);
+		this.add(pButtons, BorderLayout.SOUTH);
 	}
 
 	//Funciones
@@ -61,7 +64,7 @@ public class MPanel extends Panel {
         //TODO
 	}
 
-    public void anadirModulo(){
+    public void CARGARMEDIDAS(){
         //TODO
     }
 
@@ -74,11 +77,10 @@ public class MPanel extends Panel {
     }
 
 	public void setController(MController ctr) {
-		bCargarMedidas.addActionListener(ctr);
+		bCargarModulo.addActionListener(ctr);
 		bVerMedidas.addActionListener(ctr);
-		bAnadirModulo.addActionListener(ctr);
+		bCargarMedidas.addActionListener(ctr);
 		bEliminarModulo.addActionListener(ctr);
-
 	}
 
     public static void createGUI(JFrame window) {
@@ -89,8 +91,8 @@ public class MPanel extends Panel {
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARMODULOS));
         window.setVisible(true);
         window.pack();
-        window.setSize(500,600);
-        window.setResizable(false);
+        window.setSize(800,400);
+        //window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

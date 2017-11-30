@@ -12,10 +12,10 @@ public class MController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(MPanel.CARGARMEDIDAS)) {
+		if (e.getActionCommand().equals(MPanel.CARGARMODULO)) {
 			//TODO
 		}
-		if(e.getActionCommand().equals(MPanel.ANADIRMODULO)){
+		if(e.getActionCommand().equals(MPanel.CARGARMEDIDAS)){
 		    //TODO
         }
         if(e.getActionCommand().equals(MPanel.ELIMINARMODULO)){

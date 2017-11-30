@@ -10,17 +10,7 @@ import java.util.List;
 
 
 public class ListadoModulo {
-	static BD miBD;
-
-	public static void main(String[] args) {
-		miBD = BD.getInstance();
-		final JFrame window = new JFrame("Listado Módulos");
-		SwingUtilities.invokeLater(new Runnable(){
-			public void run() {
-				MPanel.createGUI(window);
-			}
-		});
-	}
+	public static BD miBD;
 
 	private static List<Modulo> crearListaModulo(){
 		List<Modulo> listaMod = new ArrayList<>();
