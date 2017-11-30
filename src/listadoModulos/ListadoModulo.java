@@ -41,4 +41,8 @@ public class ListadoModulo {
 	    miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa) values ('"+name+"', "+alpha+
                                                                             ", "+beta+", "+gamma+", "+kappa+");");
     }
+
+    private static void eliminarModulo(String name){
+        miBD.delete("DELETE FROM MODULO WHERE Nombre = '" + name + "';");
+    }
 }

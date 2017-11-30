@@ -1,7 +1,9 @@
 package listadoModulos;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MController implements ActionListener {
 	private MPanel panel;
@@ -13,13 +15,24 @@ public class MController implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(MPanel.CARGARMODULO)) {
-			//TODO
-		}
+            JFileChooser jfile = new JFileChooser();
+            int ret = jfile.showOpenDialog(panel);
+
+            if (ret == JFileChooser.APPROVE_OPTION){
+                File file = jfile.getSelectedFile();
+            }
+        }
 		if(e.getActionCommand().equals(MPanel.CARGARMEDIDAS)){
-		    //TODO
+            JFileChooser jfile = new JFileChooser();
+            int ret = jfile.showOpenDialog(panel);
+
+            if (ret == JFileChooser.APPROVE_OPTION){
+                File file = jfile.getSelectedFile();
+            }
         }
         if(e.getActionCommand().equals(MPanel.ELIMINARMODULO)){
-            //TODO
+            String se = panel.getSelect();
+            panel.muestraModulos(ListadoModulo.leerListaModulo());
         }
         if(e.getActionCommand().equals(MPanel.VERMEDIDAS)){
             //TODO
