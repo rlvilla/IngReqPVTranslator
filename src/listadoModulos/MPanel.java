@@ -62,14 +62,6 @@ public class MPanel extends Panel {
         //TODO
     }
 
-    public void eliminarModulo(String el){
-
-    }
-
-    public void verCampanas(){
-        //TODO
-    }
-
     public String getSelect(){
         return (String)listaM.getSelectedValue();
     }

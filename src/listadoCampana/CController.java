@@ -13,9 +13,8 @@ public class CController implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(CPanel.ELIMINARCAMPANA)){
-            String se = panel.getSelect();
-            //ListadoCampana.eliminarModulo(se);
-            //panel.muestraModulos(ListadoCampana.leerListaModulo());
+            ListadoCampana.eliminarCampana(panel.getSelect());
+            panel.muestraCampanas(ListadoCampana.leerListaCampana(panel.getMod()));
         }
         if(e.getActionCommand().equals(CPanel.VERMEDIDAS)){
             //TODO

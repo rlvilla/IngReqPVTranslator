@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Campana {
@@ -17,8 +19,12 @@ public class Campana {
         return name;
     }
 
-    public String getDates(){
-        return "Inicio: " + ini.toString() + "  Fin: " + fin.toString();
+    public String getInicio(){
+        return new SimpleDateFormat("dd/MM/yyyy").format(ini);
+    }
+
+    public String getFin(){
+        return new SimpleDateFormat("dd/MM/yyyy").format(fin);
     }
 
 }
