@@ -6,6 +6,7 @@ import java.util.List;
 public class Modulo {
     private String name;
     private float alpha, beta, gamma, kappa;
+
     private List<Medida> medidas;
 
     public Modulo(String name, float alpha, float beta, float gamma, float kappa){
