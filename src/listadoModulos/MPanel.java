@@ -60,11 +60,7 @@ public class MPanel extends Panel {
         listaM.setListData(listaMod);
     }
 
-    public void cargarDatos(){
-        //TODO
-	}
-
-    public void CARGARMEDIDAS(){
+    public void cargarMedidas(){
         //TODO
     }
 
