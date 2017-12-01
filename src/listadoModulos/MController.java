@@ -42,18 +42,28 @@ public class MController implements ActionListener {
             if (ret == JFileChooser.APPROVE_OPTION){
                 File file = jfile.getSelectedFile();
             }
+
         }
         if(e.getActionCommand().equals(MPanel.ELIMINARMODULO)){
-            ListadoModulo.eliminarModulo(panel.getSelect());
-            panel.muestraModulos(ListadoModulo.leerListaModulo());
+		    if(panel.getSelect() !=null) {
+                ListadoModulo.eliminarModulo(panel.getSelect());
+                panel.muestraModulos(ListadoModulo.leerListaModulo());
+            }else{
+                JOptionPane.showMessageDialog(panel, "No has seleccionado ningún módulo", "Error: 507" , JOptionPane.ERROR_MESSAGE);
+            }
         }
         if(e.getActionCommand().equals(MPanel.VERCAMPANAS)){
-            final JFrame window = new JFrame("Listado Campana");
-            SwingUtilities.invokeLater(new Runnable(){
-                public void run() {
-                    CPanel.createGUI(window, panel.getSelect());
-                }
-            });
+		    if(panel.getSelect() != null){
+                final JFrame window = new JFrame("Listado Campana");
+                SwingUtilities.invokeLater(new Runnable(){
+                    public void run() {
+                        CPanel.createGUI(window, panel.getSelect());
+                    }
+                });
+            }else{
+		        JOptionPane.showMessageDialog(panel, "No has seleccionado ningún módulo", "Error: 507" , JOptionPane.ERROR_MESSAGE);
+            }
+
         }
         if(e.getActionCommand().equals(MPanel.MOSTRARMODULOS)){
             panel.muestraModulos(ListadoModulo.leerListaModulo());
