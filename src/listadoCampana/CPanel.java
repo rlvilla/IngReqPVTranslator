@@ -60,7 +60,7 @@ public class CPanel extends Panel {
     }
 
     public void verMedidas(){
-        //TODOwefwe
+        //TODO
     }
 
     public String getSelectC(){
