@@ -143,7 +143,7 @@ public class BD {
         return result;
     }
 
-    public void borrarDB() {
+    private void borrarDB() {
         File file_db = new File(BD_FILE_NAME);
 
         if (file_db.exists())

@@ -2,6 +2,7 @@ package listadoModulos;
 
 import Modelo.FReader;
 import listadoCampana.CPanel;
+import listadoCampana.ListadoCampana;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 public class MController implements ActionListener {
 	private MPanel panel;
@@ -43,7 +45,10 @@ public class MController implements ActionListener {
             if (ret == JFileChooser.APPROVE_OPTION){
                 File file = jfile.getSelectedFile();
                 try {
-                    freader.leerCampanaCanalesMedida(file);
+                    String[] campanaMedidas = freader.leerCampanaCanalesMedida(file);
+                    ListadoCampana.anadirCampana(campanaMedidas[1],campanaMedidas[0],campanaMedidas[2],campanaMedidas[2]);
+                    Map<String, String[]> puntosCurva = freader.leerPuntosCurva(file);
+                    panel.muestraModulos(ListadoModulo.leerListaModulo());
                 } catch (FileNotFoundException error) {
                     error.printStackTrace();
                 }

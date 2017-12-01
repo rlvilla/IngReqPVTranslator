@@ -20,7 +20,7 @@ public class CController implements ActionListener{
             //TODO
         }
         if(e.getActionCommand().equals(CPanel.MOSTRARCAMPANA)){
-            panel.muestraCampanas(ListadoCampana.leerListaCampana("I-53 946431"));
+            panel.muestraCampanas(ListadoCampana.leerListaCampana(panel.getMod()));
         }
     }
 }

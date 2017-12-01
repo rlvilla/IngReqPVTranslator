@@ -77,24 +77,23 @@ public class FReader {
     }
 
     public Map<String, String[]> leerPuntosCurva(File fichero) throws FileNotFoundException {
+        fichero = parseFile(fichero);
         Scanner sc = new Scanner(fichero);
         Map<String, String[]> puntos = new HashMap<>();
         int n = 0; //numero de puntos
         int cnt = 1;
-        while (sc.hasNextLine() && cnt < 36) {//nos saltamos las primeras 35 lineas ya que nos son irrelevantes para los puntos
+        while (cnt < 36) {//nos saltamos las primeras 35 lineas ya que nos son irrelevantes para los puntos
             cnt++;
-            if (cnt == 36) {
-                n = Integer.parseInt(sc.nextLine().split(":")[1]);
-            } else {
-                sc.nextLine();
-            }
+            sc.nextLine();
         }
+        n = Integer.parseInt(sc.nextLine().split(":")[1].split("\\s+")[1]);
         sc.nextLine();//salto linea 37
         for (int i = 0; i < n; i++) {
             String[] valores = leerLineaPuntos(sc.nextLine());
             puntos.put("" + i, valores);
         }
         sc.close();
+        try{Files.delete(Paths.get("medidas.xls"));}catch (IOException roberto){roberto.printStackTrace();}
         return puntos;
     }
 
