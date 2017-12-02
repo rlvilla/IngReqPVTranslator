@@ -37,7 +37,7 @@ public class ListadoCampana {
             ListadoModulo.anadirModulo(modulo, "0", "0", "0", "0");
         }
         ListadoModulo.miBD.insert("INSERT INTO CAMPANA(NOMBRE, MODULO, DIAINI, DIAFIN) VALUES ('"+nombre+"', '"+modulo+
-                                        "', "+ diaIni+", "+diaFin+")");
+                                        "', '"+ diaIni+"', '"+diaFin+"')");
     }
 
     public static void eliminarCampana(String campana){
