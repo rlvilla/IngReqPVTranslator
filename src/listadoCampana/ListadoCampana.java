@@ -32,6 +32,14 @@ public class ListadoCampana {
         return listaCampana;
     }
 
+    public static void anadirCampana(String nombre, String modulo, String diaIni, String diaFin){
+        if(!modulo.equals(ListadoModulo.miBD.selectEscalar("Select Nombre FROM MODULO WHERE Nombre = '"+modulo+"'"))){
+            ListadoModulo.anadirModulo(modulo, "0", "0", "0", "0");
+        }
+        ListadoModulo.miBD.insert("INSERT INTO CAMPANA(NOMBRE, MODULO, DIAINI, DIAFIN) VALUES ('"+nombre+"', '"+modulo+
+                                        "', '"+ diaIni+"', '"+diaFin+"')");
+    }
+
     public static void eliminarCampana(String campana){
         ListadoModulo.miBD.delete("DELETE FROM CAMPANA WHERE NOMBRE = '" + campana + "';");
     }
