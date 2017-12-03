@@ -37,7 +37,7 @@ public class FReader {
         funciones lectura archivo medidas
         Separados en:
         leerCampanaCanales, noCanal y leerLineaCampanaCanales para extraer los datos de campaña y Medida
-        leerPuntosCurva para extraer los datos a introducir en la curva
+        leerPuntosCurva y leerLineaPuntos para extraer los datos a introducir en la curva
     */
 
     public String[] leerCampanaCanalesMedida(File fichero) throws FileNotFoundException {
