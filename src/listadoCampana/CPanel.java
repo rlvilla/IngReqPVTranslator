@@ -63,11 +63,11 @@ public class CPanel extends Panel {
         //TODO
     }
 
-    public String getSelect(){
+    public String getSelectC(){
         if (tablaC.getSelectedRow() >=0)
             return (String)tablaC.getValueAt(tablaC.getSelectedRow(),0);
         else
-            return "";
+            return null;
     }
 
     public void setController(CController ctr) {
