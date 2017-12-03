@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListadoMedida {
-    public static List<Medida> crearListaMedida(String campana) throws ParseException {
-        List<Medida> list = new ArrayList<>();
-        for (String[] st : ListadoModulo.miBD.select("SELECT * FROM MEDIDAS WHERE CAMPANA = '" + campana + "';")) {
-            list.add(new Medida(new SimpleDateFormat("yyyy-MM-dd").parse(st[2]), null));
+    public static List<Medida> crearListaMedida (String campana) throws ParseException{
+        List <Medida> list = new ArrayList<>();
+        for (String [] st: ListadoModulo.miBD.select("SELECT * FROM MEDIDA WHERE CAMPANA = '" + campana + "';")) {
+            list.add(new Medida(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
         }
         return list;
     }
@@ -25,8 +25,8 @@ public class ListadoMedida {
             e.printStackTrace();
         }
         String[][] listaMedida = new String[listaMed.size()][1];
-        for (Medida med : listaMed) {
-            listaMedida[listaMed.indexOf(med)] = new String[]{med.getFecha()};
+        for (Medida med: listaMed) {
+            listaMedida[listaMed.indexOf(med)] = new String[]{med.getFecha(),med.getHora(),med.getCorr()};
         }
         return listaMedida;
     }
@@ -38,8 +38,8 @@ public class ListadoMedida {
                 ", " + campanaMedidas[10] + ", " + campanaMedidas[11] + ", " + campanaMedidas[12] + ", " + campanaMedidas[13] + ", " + campanaMedidas[14] + ", " + campanaMedidas[15] + ", " + campanaMedidas[16] + ", " + campanaMedidas[17] + ");");
     }
 
-    public static void eliminarMedida(String medidas) {
-        ListadoModulo.miBD.delete("DELETE FROM MEDIDA WHERE NOMBRE = '" + medidas + "';");
+    public static void eliminarMedida(int id){
+        ListadoModulo.miBD.delete("DELETE FROM MEDIDA WHERE idm = " + id + ";");
     }
 
     public static void anadirPunto(int i, String[] values, int iDsetter) {

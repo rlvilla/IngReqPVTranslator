@@ -9,7 +9,11 @@ import java.awt.event.ActionEvent;
 public class CPanel extends Panel {
     private JLabel jName = new JLabel();
     //private JList listaC = new JList();
-    private DefaultTableModel model = new DefaultTableModel(null, new String[]{"Nombre", "Fecha Inicio", "Fecha Fin"});
+    private DefaultTableModel model = new DefaultTableModel(null, new String[]{"Nombre", "Fecha Inicio", "Fecha Fin"}){
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
     private JTable tablaC = new JTable(model);
     private JScrollPane listaCScroll = new JScrollPane(tablaC, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

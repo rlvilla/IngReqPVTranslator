@@ -28,7 +28,7 @@ public class MController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(MPanel.CARGARMODULO)) {
             JFileChooser jfile = new JFileChooser();
-            jfile.setFileFilter(new FileNameExtensionFilter("DAT Files", "dat"));
+            jfile.setFileFilter(new FileNameExtensionFilter("Archivos DAT","dat"));
             int ret = jfile.showOpenDialog(panel);
 
             if (ret == JFileChooser.APPROVE_OPTION) {
@@ -44,6 +44,7 @@ public class MController implements ActionListener {
         }
         if (e.getActionCommand().equals(MPanel.CARGARMEDIDAS)) {
             JFileChooser jfile = new JFileChooser();
+            jfile.setFileFilter(new FileNameExtensionFilter("Archivos XLS","xls"));
             int ret = jfile.showOpenDialog(panel);
 
             if (ret == JFileChooser.APPROVE_OPTION) {
