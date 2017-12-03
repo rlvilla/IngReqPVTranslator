@@ -74,7 +74,6 @@ public class FReader {
         for (int i = 0; i < sCanales.length; i++) {
             sCanales[i] = sCanales[i].replaceAll(",", ".");
         }
-        print(sCanales);
         sc.close();
         try {
             Files.delete(Paths.get("medidas.xls"));
