@@ -92,10 +92,10 @@ public class FReader {
         return aux[1].split("\\s+")[1];//aux1 contiene el valor y las unidades, por lo tanto volvemos a separar
     }
 
-    public Map<String, String[]> leerPuntosCurva(File fichero) throws FileNotFoundException {
+    public Map<Integer, String[]> leerPuntosCurva(File fichero) throws FileNotFoundException {
         fichero = parseFile(fichero);
         Scanner sc = new Scanner(fichero);
-        Map<String, String[]> puntos = new HashMap<>();
+        Map<Integer, String[]> puntos = new HashMap<>();
         int n = 0; //numero de puntos
         int cnt = 1;
         while (cnt < 36) {//nos saltamos las primeras 35 lineas ya que nos son irrelevantes para los puntos
@@ -106,7 +106,7 @@ public class FReader {
         sc.nextLine();//salto linea 37
         for (int i = 0; i < n; i++) {
             String[] valores = leerLineaPuntos(sc.nextLine());
-            puntos.put("" + i, valores);
+            puntos.put(i, valores);
         }
         sc.close();
         try {
@@ -119,6 +119,9 @@ public class FReader {
 
     private String[] leerLineaPuntos(String linea) {
         String aux[] = linea.split("\\s+");
+        for (int i = 0; i < aux.length; i++) {
+            aux[i] = aux[i].replaceAll(",", ".");
+        }
         String result[] = {aux[1], aux[2], aux[3]};
         return result;
     }

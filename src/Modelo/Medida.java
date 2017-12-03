@@ -7,24 +7,24 @@ import java.util.Dictionary;
 public class Medida {
     private Date fecha;
     private int id;
-    private Dictionary<String,Float> canales;
+    private Dictionary<String, Float> canales;
     Punto[] puntos;
 
-    public Medida(Date fecha, Punto[] puntos){
+    public Medida(Date fecha, Punto[] puntos) {
         this.id = IDsetter(fecha);
         this.fecha = fecha;
         this.puntos = puntos;
     }
 
-    public String getFecha (){
+    public String getFecha() {
         return new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(fecha);
     }
 
-    public String getID(){
+    public String getID() {
         return String.valueOf(id);
     }
 
-    public static int IDsetter(Date fec){
+    public static int IDsetter(Date fec) {
         return new SimpleDateFormat("dd.MM.yyyy.hh.mm.ss").format(fec).hashCode();
     }
 }
