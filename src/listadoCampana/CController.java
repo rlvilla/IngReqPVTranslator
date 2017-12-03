@@ -1,5 +1,7 @@
 package listadoCampana;
 
+import listadoMedidas.MedidasPanel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +25,12 @@ public class CController implements ActionListener{
         }
         if(e.getActionCommand().equals(CPanel.VERMEDIDAS)) {
             if (cpanel.getSelectC() != null) {
-
+                final JFrame window = new JFrame("Listado Medidas");
+                SwingUtilities.invokeLater(new Runnable(){
+                    public void run() {
+                        MedidasPanel.createGUI(window, cpanel.getSelectC());
+                    }
+                });
             } else {
                 JOptionPane.showMessageDialog(cpanel, "No has seleccionado ninguna campaña", "Error: 507", JOptionPane.ERROR_MESSAGE);
             }
