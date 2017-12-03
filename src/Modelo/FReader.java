@@ -28,7 +28,7 @@ public class FReader {
             bb = Charset.forName("UTF-8").encode(cb);
             Files.write(Paths.get("medidas.xls"), bb.array());
         } catch (IOException error) {
-            error.printStackTrace();
+            System.err.println(error.getMessage());
         }
         return new File("medidas.xls");
     }

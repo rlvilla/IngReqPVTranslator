@@ -4,6 +4,8 @@ import Modelo.Medida;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
@@ -20,16 +22,23 @@ public class MedidasPanel extends Panel{
     private JTable tablaM = new JTable(model);
     private JScrollPane tablaMScroll = new JScrollPane(tablaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    private JButton bVerMedidas = new JButton("Ver curva");//TBC ver campañas
+    private JButton bVerCurva = new JButton("Ver curva");//TBC ver campañas
     private JButton bEliminarCampana = new JButton("Eliminar Medida");
 
     //Constantes de comando
-    static final String VERMEDIDAS = "Ver curva"; //TBC ver campañas
+    static final String VERCURVA = "Ver curva"; //TBC ver campañas
     static final String ELIMINARMEDIDA = "Eliminar medida";
     static final String MOSTRARMEDIDA = "Mostrar medida";
     
     public MedidasPanel(String name){
         this.setLayout(new BorderLayout());
+        tablaM.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    bVerCurva.doClick();
+                }
+            }
+        });
         jName.setText(name);
         JPanel ptitulo = new JPanel(new BorderLayout());
         ptitulo.add(jName, BorderLayout.WEST);
@@ -42,11 +51,11 @@ public class MedidasPanel extends Panel{
         pButtons.setLayout(new GridLayout(1, 2));
 
         //Acciones de los botones
-        bVerMedidas.setActionCommand(VERMEDIDAS);
+        bVerCurva.setActionCommand(VERCURVA);
         bEliminarCampana.setActionCommand(ELIMINARMEDIDA);
 
 
-        pButtons.add(bVerMedidas);//TBC ver campañas
+        pButtons.add(bVerCurva);//TBC ver campañas
         pButtons.add(bEliminarCampana);
 
         pButtons.setMinimumSize(new Dimension(500,100));
@@ -75,7 +84,7 @@ public class MedidasPanel extends Panel{
     public int getSelectID() {
         if (tablaM.getSelectedRow() >=0) {
             try {
-                return Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+                return Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                         .parse(tablaM.getValueAt(tablaM.getSelectedRow()
                                 , 0) + " " + tablaM.getValueAt(tablaM.getSelectedRow(), 1)));
             } catch (ParseException e) {
@@ -88,7 +97,7 @@ public class MedidasPanel extends Panel{
     }
 
     public void setController(MedidasController ctr) {
-        bVerMedidas.addActionListener(ctr);
+        bVerCurva.addActionListener(ctr);
         bEliminarCampana.addActionListener(ctr);
     }
 

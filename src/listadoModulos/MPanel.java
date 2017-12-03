@@ -27,6 +27,13 @@ public class MPanel extends Panel {
     //Constructor
     public MPanel(){
 		this.setLayout(new BorderLayout());
+        listaM.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    bVerCampanas.doClick();
+                }
+            }
+        });
 		JPanel pList = new JPanel();
 		pList.setLayout(new BoxLayout(pList, 1));
         listaM.setPreferredSize(new Dimension (200,200));

@@ -17,14 +17,14 @@ public class MedidasController implements ActionListener{
                 ListadoMedida.eliminarMedida(mpanel.getSelectID());
                 mpanel.muestraMedidas(ListadoMedida.leerListaMedida(mpanel.getMod()));
             }else{
-                JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna campaña", "Error: 507" , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna medida", "Error: 507" , JOptionPane.ERROR_MESSAGE);
             }
         }
-        if(e.getActionCommand().equals(MedidasPanel.VERMEDIDAS)) {
+        if(e.getActionCommand().equals(MedidasPanel.VERCURVA)) {
             if (mpanel.getSelectC() != null) {
 
             } else {
-                JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna campaña", "Error: 507", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna medida", "Error: 507", JOptionPane.ERROR_MESSAGE);
             }
         }
         if(e.getActionCommand().equals(MedidasPanel.MOSTRARMEDIDA)){

@@ -5,6 +5,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CPanel extends Panel {
     private JLabel jName = new JLabel();
@@ -28,12 +30,19 @@ public class CPanel extends Panel {
     //Constructor
     public CPanel(String name){
         this.setLayout(new BorderLayout());
+        tablaC.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    bVerMedidas.doClick();
+                }
+            }
+        });
         jName.setText(name);
         JPanel ptitulo = new JPanel(new BorderLayout());
         ptitulo.add(jName, BorderLayout.WEST);
         JPanel pList = new JPanel();
         pList.setLayout(new BoxLayout(pList, 1));
-        tablaC.setPreferredSize(new Dimension (200,285));
+        tablaC.setPreferredSize(new Dimension (200,400));
         pList.add(listaCScroll);
 
         JPanel pButtons = new JPanel();

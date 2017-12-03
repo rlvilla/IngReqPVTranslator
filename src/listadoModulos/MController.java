@@ -43,31 +43,35 @@ public class MController implements ActionListener {
         }
 		if(e.getActionCommand().equals(MPanel.CARGARMEDIDAS)){
             JFileChooser jfile = new JFileChooser();
+            jfile.setMultiSelectionEnabled(true);
             jfile.setFileFilter(new FileNameExtensionFilter("Archivos XLS","xls"));
             int ret = jfile.showOpenDialog(panel);
 
             if (ret == JFileChooser.APPROVE_OPTION){
-                File file = jfile.getSelectedFile();
+                //File file = jfile.getSelectedFile();
+                File [] files = jfile.getSelectedFiles();
                 try {
-                    String[] campanaMedidas = freader.leerCampanaCanalesMedida(file);
-                    String date = parseDate(campanaMedidas[2]);
-                    //Introduccion de la campaña en la BBDD si no existe
-                    if(ListadoModulo.miBD.selectEscalar("SELECT NOMBRE FROM CAMPANA WHERE NOMBRE = '"+campanaMedidas[1]+"';") == null){
-                        ListadoCampana.anadirCampana(campanaMedidas[1],campanaMedidas[0],date,date);
-                    }else{//en el caso de existir, se comparan las fechas de inicio y de fin con la fecha de la medida y se cambian si es necesario
-                        if(new SimpleDateFormat("yyyy-MM-dd").parse(ListadoModulo.miBD.selectEscalar("SELECT DIAINI FROM CAMPANA WHERE NOMBRE = '"+campanaMedidas[1]+"';")).after
-                                                                                                                                (new SimpleDateFormat("yyyy-MM-dd").parse(date))){
-                            ListadoModulo.miBD.update("UPDATE CAMPANA SET DIAINI = '"+date+"' WHERE NOMBRE = '"+campanaMedidas[1]+"';");
+                    for (File file: files) {
+                        String[] campanaMedidas = freader.leerCampanaCanalesMedida(file);
+                        String date = parseDate(campanaMedidas[2]);
+                        //Introduccion de la campaña en la BBDD si no existe
+                        if(ListadoModulo.miBD.selectEscalar("SELECT NOMBRE FROM CAMPANA WHERE NOMBRE = '"+campanaMedidas[1]+"';") == null){
+                            ListadoCampana.anadirCampana(campanaMedidas[1],campanaMedidas[0],date,date);
+                        }else{//en el caso de existir, se comparan las fechas de inicio y de fin con la fecha de la medida y se cambian si es necesario
+                            if(new SimpleDateFormat("yyyy-MM-dd").parse(ListadoModulo.miBD.selectEscalar("SELECT DIAINI FROM CAMPANA WHERE NOMBRE = '"+campanaMedidas[1]+"';")).after
+                                    (new SimpleDateFormat("yyyy-MM-dd").parse(date))){
+                                ListadoModulo.miBD.update("UPDATE CAMPANA SET DIAINI = '"+date+"' WHERE NOMBRE = '"+campanaMedidas[1]+"';");
 
-                        }else if(new SimpleDateFormat("yyyy-MM-dd").parse(ListadoModulo.miBD.selectEscalar("SELECT DIAFIN FROM CAMPANA WHERE NOMBRE = '"+campanaMedidas[1]+"';")).before
-                                                                                                                                        (new SimpleDateFormat("yyyy-MM-dd").parse(date))){
-                            ListadoModulo.miBD.update("UPDATE CAMPANA SET DIAFIN = '"+date+"' WHERE NOMBRE = '"+campanaMedidas[1]+"';");
+                            }else if(new SimpleDateFormat("yyyy-MM-dd").parse(ListadoModulo.miBD.selectEscalar("SELECT DIAFIN FROM CAMPANA WHERE NOMBRE = '"+campanaMedidas[1]+"';")).before
+                                    (new SimpleDateFormat("yyyy-MM-dd").parse(date))){
+                                ListadoModulo.miBD.update("UPDATE CAMPANA SET DIAFIN = '"+date+"' WHERE NOMBRE = '"+campanaMedidas[1]+"';");
+                            }
                         }
+                        //Introducción de la medida en la base de datos
+                        ListadoMedida.anadirMedida(campanaMedidas, date);
+                        Map<String, String[]> puntosCurva = freader.leerPuntosCurva(file);
+                        panel.muestraModulos(ListadoModulo.leerListaModulo());
                     }
-                    //Introducción de la medida en la base de datos
-                    ListadoMedida.anadirMedida(campanaMedidas, date);
-                    Map<String, String[]> puntosCurva = freader.leerPuntosCurva(file);
-                    panel.muestraModulos(ListadoModulo.leerListaModulo());
                 } catch (FileNotFoundException error) {
                     error.printStackTrace();
                 } catch (ParseException e1) {
