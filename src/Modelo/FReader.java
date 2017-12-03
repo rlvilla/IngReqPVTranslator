@@ -48,7 +48,16 @@ public class FReader {
         int cnt = 1;
         while (sc.hasNextLine() && cnt <= 32) {
             if (cnt > 13 && !noCanal(cnt)) {//lineas 14,17,20,23,26,29,32 -> Canales de la medida
-                sCanales[index] = leerLineaCampanaCanales(sc.nextLine());
+                if (cnt == 29) {
+                    String linea29 = leerLineaCampanaCanales(sc.nextLine());
+                    if (linea29.equals("ºC")) {
+                        sCanales[index] = "null";
+                    } else {
+                        sCanales[index] = linea29;
+                    }
+                } else {
+                    sCanales[index] = leerLineaCampanaCanales(sc.nextLine());
+                }
                 index++;
             } else if (cnt != 5 && cnt != 13 && cnt < 13) {//lineas 1-12 ignorando la 5(vacia) y la 13(informacion no util)
                 if (cnt == 1) {
@@ -62,8 +71,16 @@ public class FReader {
             }
             cnt++;
         }
+        for (int i = 0; i < sCanales.length; i++) {
+            sCanales[i] = sCanales[i].replaceAll(",", ".");
+        }
+        print(sCanales);
         sc.close();
-        try{Files.delete(Paths.get("medidas.xls"));}catch (IOException roberto){roberto.printStackTrace();}
+        try {
+            Files.delete(Paths.get("medidas.xls"));
+        } catch (IOException roberto) {
+            roberto.printStackTrace();
+        }
         return sCanales;
     }
 
@@ -93,7 +110,11 @@ public class FReader {
             puntos.put("" + i, valores);
         }
         sc.close();
-        try{Files.delete(Paths.get("medidas.xls"));}catch (IOException roberto){roberto.printStackTrace();}
+        try {
+            Files.delete(Paths.get("medidas.xls"));
+        } catch (IOException roberto) {
+            roberto.printStackTrace();
+        }
         return puntos;
     }
 

@@ -19,7 +19,9 @@ CREATE TABLE CAMPANA(
 CREATE TABLE MEDIDA(
   Campana varchar(50) NOT NULL,
   idm NUMERIC NOT NULL PRIMARY KEY,
-  fecha varchar(50) NOT NULL,
+  fecha DATE NOT NULL,
+  hora DATE NOT NULL,
+  Correccion varchar[50],
   Isc NUMERIC,
   Voc NUMERIC,
   Pmax NUMERIC,
@@ -29,6 +31,7 @@ CREATE TABLE MEDIDA(
   VViento NUMERIC,
   DirViento NUMERIC,
   HumedadRel  NUMERIC,
+  TempAmbiente NUMERIC,
   Piranometro NUMERIC,
   RTD NUMERIC,
   CelulaIso NUMERIC,

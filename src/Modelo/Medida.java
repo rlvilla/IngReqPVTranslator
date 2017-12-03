@@ -24,7 +24,7 @@ public class Medida {
         return String.valueOf(id);
     }
 
-    public int IDsetter(Date fec){
+    public static int IDsetter(Date fec){
         return new SimpleDateFormat("dd.MM.yyyy.hh.mm.ss").format(fec).hashCode();
     }
 }
