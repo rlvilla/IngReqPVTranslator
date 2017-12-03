@@ -70,7 +70,7 @@ public class BD {
 
             while (c != -1) {
 
-                if ( ((char) c) != ';')
+                if (((char) c) != ';')
                     sb.append((char) c);
                 else {
                     execute(sb.toString().trim().replace("\n", ""));
@@ -81,18 +81,15 @@ public class BD {
             }
 
 
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.err.println("Error al leer el fichero DDL : " + ex.getMessage());
             borrarDB();
-        }
-        finally {
+        } finally {
 
             if (br != null)
                 try {
                     br.close();
-                }
-                catch (IOException ex) {
+                } catch (IOException ex) {
                     System.out.println("Error al cerrar el fichero : " + ex.getMessage());
                 }
 
@@ -111,7 +108,7 @@ public class BD {
                 String[] sm = new String[rsmt.getColumnCount()];
 
                 for (int i = 0; i < sm.length; i++) {
-                    sm[i] = rs.getString(i+1);
+                    sm[i] = rs.getString(i + 1);
                 }
 
                 list.add(sm);
@@ -135,15 +132,14 @@ public class BD {
             if (rsmt.getColumnCount() > 0 && rs.next())
                 result = rs.getString(1);
 
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Error al ejecutar sentencia : " + query + "\nError : " + ex.getMessage());
         }
 
         return result;
     }
 
-    public void borrarDB() {
+    private void borrarDB() {
         File file_db = new File(BD_FILE_NAME);
 
         if (file_db.exists())

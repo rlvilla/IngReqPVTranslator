@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Modulo {
-    BD miBD = BD.getInstance();
     private String name;
     private float alpha, beta, gamma, kappa;
+
     private List<Medida> medidas;
 
     public Modulo(String name, float alpha, float beta, float gamma, float kappa){
@@ -25,6 +25,10 @@ public class Modulo {
 
     public String toString(){
         return("Name: " +name+ "\nAlpha: "+alpha+"\nBeta: "+beta+"\nGamma: "+gamma+"\nKappa: "+kappa+"\n");
+    }
+
+    public String getName(){
+        return name;
     }
 
 }
