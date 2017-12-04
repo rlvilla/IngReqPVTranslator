@@ -12,7 +12,7 @@ public class ListadoMedida {
     public static List<Medida> crearListaMedida (String campana) throws ParseException{
         List <Medida> list = new ArrayList<>();
         for (String [] st: ListadoModulo.miBD.select("SELECT * FROM MEDIDA WHERE CAMPANA = '" + campana + "';")) {
-            list.add(new Medida(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
+            list.add(new Medida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
         }
         return list;
     }

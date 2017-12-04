@@ -69,7 +69,7 @@ public class MController implements ActionListener {
                     ListadoMedida.anadirMedida(campanaMedidas, date);
                     Map<Integer, String[]> puntosCurva = freader.leerPuntosCurva(file);
                     for (int i = 0; i < puntosCurva.size(); i++) {
-                        ListadoMedida.anadirPunto(i, puntosCurva.get(i), Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3])));
+                        ListadoMedida.anadirPunto(i, puntosCurva.get(i), Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3])));
                     }
                     panel.muestraModulos(ListadoModulo.leerListaModulo());
                 } catch (FileNotFoundException error) {

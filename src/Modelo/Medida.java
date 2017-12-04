@@ -23,7 +23,7 @@ public class Medida {
     }
 
     public String getHora (){
-        return new SimpleDateFormat("hh:mm:ss").format(fecha);
+        return new SimpleDateFormat("HH:mm:ss").format(fecha);
     }
 
 
@@ -32,7 +32,7 @@ public class Medida {
     }
 
     public static int IDsetter(Date fec) {
-        return new SimpleDateFormat("dd.MM.yyyy.hh.mm.ss").format(fec).hashCode();
+        return new SimpleDateFormat("dd.MM.yyyy.HH.mm.ss").format(fec).hashCode();
     }
 
     public String getCorr() {
