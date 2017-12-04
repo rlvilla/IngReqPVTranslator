@@ -50,7 +50,7 @@ public class FReader {
             if (cnt > 13 && !noCanal(cnt)) {//lineas 14,17,20,23,26,29,32 -> Canales de la medida
                 if (cnt == 29) {
                     String linea29 = leerLineaCampanaCanales(sc.nextLine());
-                    if (linea29.equals("ºC")) {
+                    if (linea29.contains("ºC")) {
                         sCanales[index] = "null";
                     } else {
                         sCanales[index] = linea29;
