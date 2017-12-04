@@ -35,7 +35,7 @@ public class MedidasPanel extends Panel{
         ptitulo.add(jName, BorderLayout.WEST);
         JPanel pList = new JPanel();
         pList.setLayout(new BoxLayout(pList, 1));
-        tablaM.setPreferredSize(new Dimension (200,285));
+       // tablaM.setPreferredSize(new Dimension (200,285));
         pList.add(tablaMScroll);
 
         JPanel pButtons = new JPanel();
