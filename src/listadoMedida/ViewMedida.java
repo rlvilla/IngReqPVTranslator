@@ -1,4 +1,4 @@
-package listadoMedidas;
+package listadoMedida;
 
 import Modelo.Medida;
 
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class MedidasPanel extends Panel{
+public class ViewMedida extends Panel{
     private JLabel jName = new JLabel();
     //private JList tablaM = new JList();
     private DefaultTableModel model = new DefaultTableModel(null, new String[]{"Fecha", "Hora", "Corrección"}){
@@ -30,7 +30,7 @@ public class MedidasPanel extends Panel{
     static final String ELIMINARMEDIDA = "Eliminar medida";
     static final String MOSTRARMEDIDA = "Mostrar medida";
     
-    public MedidasPanel(String name){
+    public ViewMedida(String name){
         this.setLayout(new BorderLayout());
         tablaM.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -44,7 +44,7 @@ public class MedidasPanel extends Panel{
         ptitulo.add(jName, BorderLayout.WEST);
         JPanel pList = new JPanel();
         pList.setLayout(new BoxLayout(pList, 1));
-        tablaM.setPreferredSize(new Dimension (200,285));
+        //tablaM.setPreferredSize(new Dimension (200,285));
         pList.add(tablaMScroll);
 
         JPanel pButtons = new JPanel();
@@ -96,7 +96,7 @@ public class MedidasPanel extends Panel{
             return -1;
     }
 
-    public void setController(MedidasController ctr) {
+    public void setController(CtrlMedida ctr) {
         bVerCurva.addActionListener(ctr);
         bEliminarCampana.addActionListener(ctr);
     }
@@ -106,8 +106,8 @@ public class MedidasPanel extends Panel{
     }
 
     public static void createGUI(JFrame window, String name) {
-        MedidasPanel panel = new MedidasPanel(name);
-        MedidasController ctr = new MedidasController(panel);
+        ViewMedida panel = new ViewMedida(name);
+        CtrlMedida ctr = new CtrlMedida(panel);
         panel.setController(ctr);
         window.setContentPane(panel);
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARMEDIDA));

@@ -8,8 +8,8 @@ import java.util.List;
 public class BD {
 
     // Configuración de la base de datos.
-    private static final String BD_FILE_NAME = "PVTranslator.db";
-    private static final String BD_DDL_BD = "PVT.ddl";
+    private static final String BD_FILE_NAME = "C:/Users/Roberto/Dropbox/Documentos/workspaceEclipse/IngReqPVTranslator/out/artifacts/IngReqPVTranslator_jar/PVTranslator.db";
+    private static final String BD_DDL_BD = "C:/Users/Roberto/Dropbox/Documentos/workspaceEclipse/IngReqPVTranslator/out/artifacts/IngReqPVTranslator_jar/PVT.ddl";
     private static final String DB_URL = "jdbc:sqlite:" + BD_FILE_NAME;
     // Fin configuración.
 

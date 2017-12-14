@@ -1,4 +1,4 @@
-package listadoModulos;
+package listadoModulo;
 
 
 import javax.swing.*;
@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MPanel extends Panel {
+public class ViewModulo extends Panel {
 	//Componentes
     private JList listaM = new JList();
 	private JScrollPane listaMScroll = new JScrollPane(listaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -25,7 +25,7 @@ public class MPanel extends Panel {
     static final String MOSTRARMODULOS = "Mostrar modulos";
 
     //Constructor
-    public MPanel(){
+    public ViewModulo(){
 		this.setLayout(new BorderLayout());
         listaM.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -75,7 +75,7 @@ public class MPanel extends Panel {
         return (String)listaM.getSelectedValue();
     }
 
-	public void setController(MController ctr) {
+	public void setController(CtrlModulo ctr) {
 		bCargarModulo.addActionListener(ctr);
 		bVerCampanas.addActionListener(ctr);
 		bCargarMedidas.addActionListener(ctr);
@@ -83,8 +83,8 @@ public class MPanel extends Panel {
 	}
 
     public static void createGUI(JFrame window) {
-        MPanel panel = new MPanel();
-        MController ctr = new MController(panel);
+        ViewModulo panel = new ViewModulo();
+        CtrlModulo ctr = new CtrlModulo(panel);
         panel.setController(ctr);
         window.setContentPane(panel);
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARMODULOS));

@@ -1,35 +1,37 @@
-package listadoMedidas;
+package listadoMedida;
+
+import Modelo.PVBD;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MedidasController implements ActionListener{
-    private MedidasPanel mpanel;
+public class CtrlMedida implements ActionListener{
+    private ViewMedida mpanel;
 
-    public MedidasController(MedidasPanel p) {
+    public CtrlMedida(ViewMedida p) {
         mpanel = p;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals(MedidasPanel.ELIMINARMEDIDA)){
+        if(e.getActionCommand().equals(ViewMedida.ELIMINARMEDIDA)){
             if(mpanel.getSelectC() != null) {
-                ListadoMedida.eliminarMedida(mpanel.getSelectID());
-                mpanel.muestraMedidas(ListadoMedida.leerListaMedida(mpanel.getMod()));
+                PVBD.eliminarMedida(mpanel.getSelectID());
+                mpanel.muestraMedidas(PVBD.leerListaMedida(mpanel.getMod()));
             }else{
                 JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna medida", "Error: 507" , JOptionPane.ERROR_MESSAGE);
             }
         }
-        if(e.getActionCommand().equals(MedidasPanel.VERCURVA)) {
+        if(e.getActionCommand().equals(ViewMedida.VERCURVA)) {
             if (mpanel.getSelectC() != null) {
 
             } else {
                 JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna medida", "Error: 507", JOptionPane.ERROR_MESSAGE);
             }
         }
-        if(e.getActionCommand().equals(MedidasPanel.MOSTRARMEDIDA)){
+        if(e.getActionCommand().equals(ViewMedida.MOSTRARMEDIDA)){
 
-            mpanel.muestraMedidas(ListadoMedida.leerListaMedida(mpanel.getMod()));
+            mpanel.muestraMedidas(PVBD.leerListaMedida(mpanel.getMod()));
         }
     }
 }

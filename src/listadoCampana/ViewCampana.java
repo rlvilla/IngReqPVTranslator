@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CPanel extends Panel {
+public class ViewCampana extends Panel {
     private JLabel jName = new JLabel();
     //private JList listaC = new JList();
     private DefaultTableModel model = new DefaultTableModel(null, new String[]{"Nombre", "Fecha Inicio", "Fecha Fin"}){
@@ -28,7 +28,7 @@ public class CPanel extends Panel {
     static final String MOSTRARCAMPANA = "Mostrar campana";
 
     //Constructor
-    public CPanel(String name){
+    public ViewCampana(String name){
         this.setLayout(new BorderLayout());
         tablaC.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -83,7 +83,7 @@ public class CPanel extends Panel {
             return null;
     }
 
-    public void setController(CController ctr) {
+    public void setController(CtrlCampana ctr) {
         bVerMedidas.addActionListener(ctr);
         bEliminarCampana.addActionListener(ctr);
     }
@@ -93,8 +93,8 @@ public class CPanel extends Panel {
     }
 
     public static void createGUI(JFrame window, String name) {
-        CPanel panel = new CPanel(name);
-        CController ctr = new CController(panel);
+        ViewCampana panel = new ViewCampana(name);
+        CtrlCampana ctr = new CtrlCampana(panel);
         panel.setController(ctr);
         window.setContentPane(panel);
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARCAMPANA));
