@@ -20,17 +20,17 @@ public class FReader {
         }
     }
 
-    private File parseFile(File file) {
+    private File parseFile(File file, String name) {
         try {
             Path p = Paths.get(file.toString());
             ByteBuffer bb = ByteBuffer.wrap(Files.readAllBytes(p));
             CharBuffer cb = Charset.forName("windows-1252").decode(bb);
             bb = Charset.forName("UTF-8").encode(cb);
-            Files.write(Paths.get("medidas.xls"), bb.array());
+            Files.write(Paths.get(name), bb.array());
         } catch (IOException error) {
             System.err.println(error.getMessage());
         }
-        return new File("medidas.xls");
+        return new File(name);
     }
 
     /*
@@ -41,7 +41,7 @@ public class FReader {
     */
 
     public String[] leerCampanaCanalesMedida(File fichero) throws FileNotFoundException {
-        fichero = parseFile(fichero);
+        fichero = parseFile(fichero, "medidas.xls");
         Scanner sc = new Scanner(fichero);
         String[] sCanales = new String[18];
         int index = 0;
@@ -71,14 +71,14 @@ public class FReader {
             }
             cnt++;
         }
-        for (int i = 0; i < sCanales.length; i++) {
-            sCanales[i] = sCanales[i].replaceAll(",", ".");
-        }
         sc.close();
         try {
             Files.delete(Paths.get("medidas.xls"));
         } catch (IOException roberto) {
             roberto.printStackTrace();
+        }
+        for (int i = 0; i < sCanales.length; i++) {
+            sCanales[i] = sCanales[i].replaceAll(",", ".");
         }
         return sCanales;
     }
@@ -93,8 +93,16 @@ public class FReader {
     }
 
     public Map<String, String[]> leerPuntosCurva(File fichero) throws FileNotFoundException {
-        fichero = parseFile(fichero);
-        Scanner sc = new Scanner(fichero);
+        String name = "puntos.xls";
+        fichero = parseFile(fichero, name);
+        Scanner sc;
+        try{
+            sc = new Scanner(fichero);
+        } catch (FileNotFoundException e){
+            name = "puntos1.xls";
+            fichero = parseFile(fichero, name);
+            sc = new Scanner(fichero);
+        }
         Map<String, String[]> puntos = new HashMap<>();
         int n = 0; //numero de puntos
         int cnt = 1;
@@ -110,7 +118,7 @@ public class FReader {
         }
         sc.close();
         try {
-            Files.delete(Paths.get("medidas.xls"));
+            Files.delete(Paths.get(name));
         } catch (IOException roberto) {
             roberto.printStackTrace();
         }
