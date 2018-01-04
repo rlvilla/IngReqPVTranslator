@@ -8,6 +8,7 @@ import java.text.ParseException;
 import Modelo.Punto;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -26,10 +27,10 @@ public class ViewRepresentacion extends Panel {
     ButtonGroup group = new ButtonGroup();
 
     // Modelo para que no se pueda deditar ninguna de las tablas
-
-    // DATOS SIN IMPORTANCIA
     String[] izquierdanombres = {"V", "I", "P"};
     String[] inferiornombres = {"Nombre Medida", "V", "I", "P", "Correccion"};
+
+    // DATOS SIN IMPORTANCIA
     Object[][] datosIzquierda = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
     Object[][] datosInferior = {{"Medida1", 1, 1, 1, "Si"}, {"Medida2", 2, 2, 2, "Si"},
             {"Medida3", 3, 3, 3, "Si"}};
@@ -42,10 +43,22 @@ public class ViewRepresentacion extends Panel {
 //    private JScrollPane listaInfScroll = new JScrollPane(listaInf, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 //            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 //
-    private JTable tablaIzquierda = new JTable(datosIzquierda, izquierdanombres);
+    private DefaultTableModel model1 = new DefaultTableModel(null, izquierdanombres){
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    private JTable tablaIzquierda = new JTable(model1);
+
     private JScrollPane tablaIzquierdaScroll = new JScrollPane(tablaIzquierda, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    private JTable tablaInferior = new JTable(datosInferior, inferiornombres);
+
+    private DefaultTableModel model2 = new DefaultTableModel(null, inferiornombres){
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    private JTable tablaInferior = new JTable(model2);
     private JScrollPane tablaInferiorScroll = new JScrollPane(tablaInferior, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -80,8 +93,9 @@ public class ViewRepresentacion extends Panel {
         // TablaIzquierda
         JPanel panelListaIzq = new JPanel();
         panelListaIzq.setLayout(new BoxLayout(panelListaIzq, 1));
-        //tablaIzquierda.setPreferredSize(new Dimension(260, 400));
+        tablaIzquierdaScroll.setPreferredSize(new Dimension(260, 400));
         //tablaIzquierda.setFont(new Font("Arial", Font.BOLD, 20));
+        panelListaIzq.setPreferredSize(new Dimension(260, 400));
         panelListaIzq.add(tablaIzquierdaScroll);
 
         // Grafica (CENTRO)
@@ -103,13 +117,13 @@ public class ViewRepresentacion extends Panel {
         // TablaInferior
         JPanel panelListaInf = new JPanel();
         panelListaInf.setLayout(new BoxLayout(panelListaInf, 1));
-        //tablaInferior.setPreferredSize(new Dimension(260, 200));
+        tablaInferiorScroll.setPreferredSize(new Dimension(500, 200));
         //tablaInferior.setFont(new Font("Arial", Font.BOLD, 20));
         panelListaInf.add(tablaInferiorScroll);
 
+        this.add(panelListaIzq, BorderLayout.WEST);
         this.add(panelGrafica, BorderLayout.CENTER);
         this.add(panelDerecha, BorderLayout.EAST);
-        this.add(panelListaIzq, BorderLayout.WEST);
         this.add(panelListaInf, BorderLayout.SOUTH);
 
     }
