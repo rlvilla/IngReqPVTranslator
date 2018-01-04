@@ -1,6 +1,7 @@
 package listadoMedida;
 
 import Modelo.PVBD;
+import verRepresentacion.ViewRepresentacion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,12 @@ public class CtrlMedida implements ActionListener{
         }
         if(e.getActionCommand().equals(ViewMedida.VERCURVA)) {
             if (mpanel.getSelectC() != null) {
-
+                final JFrame window = new JFrame();
+                SwingUtilities.invokeLater(new Runnable(){
+                    public void run() {
+                        ViewRepresentacion.createGUI(window, mpanel.getSelectC());
+                    }
+                });
             } else {
                 JOptionPane.showMessageDialog(mpanel, "No has seleccionado ninguna medida", "Error: 507", JOptionPane.ERROR_MESSAGE);
             }
