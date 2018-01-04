@@ -14,8 +14,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import ViewCorregida.CtrlCorregida;
-import ViewCorregida.ViewCorregida;
+import verCorregida.CtrlCorregida;
+import verCorregida.ViewCorregida;
 
 public class ViewRepresentacion extends Panel {
     private static final String MOSTRARMEDIDAS = null;

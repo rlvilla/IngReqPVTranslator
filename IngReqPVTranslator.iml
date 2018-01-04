@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sqlite-jdbc-3.21.0" level="project" />
+    <orderEntry type="library" name="jfreechart-1.0.19-experimental" level="project" />
   </component>
 </module>
