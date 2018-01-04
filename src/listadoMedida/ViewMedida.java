@@ -22,7 +22,7 @@ public class ViewMedida extends Panel{
     private JTable tablaM = new JTable(model);
     private JScrollPane tablaMScroll = new JScrollPane(tablaM, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    private JButton bVerCurva = new JButton("Ver curva");//TBC ver campañas
+    private JButton bVerCurva = new JButton("Ver curva");
     private JButton bEliminarCampana = new JButton("Eliminar Medida");
 
     //Constantes de comando
