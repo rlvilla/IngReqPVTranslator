@@ -109,9 +109,9 @@ public class ViewRepresentacion extends Panel {
 
     }
 
-    public static void createGUI(JFrame window, String name) {
+    public static void createGUI(JFrame window, String name, int id) {
         ViewRepresentacion panel = new ViewRepresentacion(name);
-        CtrlRepresentacion ctr = new CtrlRepresentacion(panel);
+        CtrlRepresentacion ctr = new CtrlRepresentacion(panel, id);
         panel.setController(ctr);
         window.setContentPane(panel);
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARCURVA));

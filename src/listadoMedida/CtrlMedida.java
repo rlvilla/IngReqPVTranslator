@@ -28,7 +28,7 @@ public class CtrlMedida implements ActionListener{
                 final JFrame window = new JFrame();
                 SwingUtilities.invokeLater(new Runnable(){
                     public void run() {
-                        ViewRepresentacion.createGUI(window, mpanel.getSelectC());
+                        ViewRepresentacion.createGUI(window, mpanel.getSelectC(), mpanel.getSelectID());
                     }
                 });
             } else {
