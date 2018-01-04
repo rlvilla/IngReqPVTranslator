@@ -13,9 +13,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import verCorregida.CtrlCorregida;
-import verCorregida.ViewCorregida;
-
 public class ViewRepresentacion extends Panel {
     JFrame ventana = new JFrame("Representacion Medida");
     // Desplegable
@@ -46,7 +43,7 @@ public class ViewRepresentacion extends Panel {
     //Constantes de funciones
     static final String MOSTRARIV = "MOSTRAR CURVA IV";
     static final String MOSTRARPV = "MOSTRAR CURVA PV";
-    static final String MOSTRARMEDIDAS = "Mostrar medidas";
+    static final String MOSTRARCURVA = "Mostrar medidas";
     static final String CORREGIR = "Corregir curva";
 
     // Boton corregir
@@ -65,6 +62,7 @@ public class ViewRepresentacion extends Panel {
         PV.setActionCommand(MOSTRARPV);
         panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.PAGE_AXIS));
         panelDerecha.add(bCorregir);
+        bCorregir.setActionCommand(CORREGIR);
         panelDerecha.add(comboList);
         panelDerecha.add(IV);
         panelDerecha.add(PV);
@@ -116,7 +114,7 @@ public class ViewRepresentacion extends Panel {
         CtrlRepresentacion ctr = new CtrlRepresentacion(panel);
         panel.setController(ctr);
         window.setContentPane(panel);
-        ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARMEDIDAS));
+        ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARCURVA));
         window.setVisible(true);
         window.pack();
         window.setSize(800, 400);
