@@ -6,6 +6,7 @@ import verRepresentacion.ViewRepresentacion;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 public class CtrlMedida implements ActionListener{
     private ViewMedida mpanel;
@@ -28,7 +29,11 @@ public class CtrlMedida implements ActionListener{
                 final JFrame window = new JFrame("Representacion");
                 SwingUtilities.invokeLater(new Runnable(){
                     public void run() {
-                        ViewRepresentacion.createGUI(window, mpanel.getSelectC());
+                        try {
+                            ViewRepresentacion.createGUI(window, mpanel.getSelectC(), mpanel.getSelectID());
+                        }catch (ParseException e){
+
+                        }
                     }
                 });
             } else {

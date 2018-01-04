@@ -3,6 +3,9 @@ package verRepresentacion;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
+
+import Modelo.Punto;
 
 import javax.swing.*;
 
@@ -111,9 +114,9 @@ public class ViewRepresentacion extends Panel {
 
     }
 
-    public static void createGUI(JFrame window, String name) {
+    public static void createGUI(JFrame window, String name, int id) throws ParseException{
         ViewRepresentacion panel = new ViewRepresentacion(name);
-        CtrlRepresentacion ctr = new CtrlRepresentacion(panel);
+        CtrlRepresentacion ctr = new CtrlRepresentacion(panel, id);
         panel.setController(ctr);
         window.setContentPane(panel);
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARCURVA));
@@ -127,6 +130,17 @@ public class ViewRepresentacion extends Panel {
         bCorregir.addActionListener(ctr);
     }
 
+    public void mostrarCurva(Punto[] puntos){
+
+    }
+
+    public void mostrarIV(){
+
+    }
+
+    public void mostrarPV(){
+
+    }
 
 }
 
