@@ -14,7 +14,6 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class ViewRepresentacion extends Panel {
-    JFrame ventana = new JFrame("Representacion Medida");
     // Desplegable
     String[] opcionesCombo = {"medida1", "medida2", "medida3"};
     JComboBox comboList = new JComboBox(opcionesCombo);
@@ -33,11 +32,18 @@ public class ViewRepresentacion extends Panel {
             {"Medida3", 3, 3, 3, "Si"}};
 
     // DECLARACION DE LAS TABLAS
-    private JList listaIzq = new JList();
-    private JScrollPane listaIzqScroll = new JScrollPane(listaIzq, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+//    private JList listaIzq = new JList();
+//    private JScrollPane listaIzqScroll = new JScrollPane(listaIzq, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+//            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//    private JList listaInf = new JList();
+//    private JScrollPane listaInfScroll = new JScrollPane(listaInf, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+//            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//
+    private JTable tablaIzquierda = new JTable(datosIzquierda, izquierdanombres);
+    private JScrollPane tablaIzquierdaScroll = new JScrollPane(tablaIzquierda, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    private JList listaInf = new JList();
-    private JScrollPane listaInfScroll = new JScrollPane(listaInf, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+    private JTable tablaInferior = new JTable(datosInferior, inferiornombres);
+    private JScrollPane tablaInferiorScroll = new JScrollPane(tablaInferior, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
     //Constantes de funciones
@@ -51,8 +57,7 @@ public class ViewRepresentacion extends Panel {
 
     public ViewRepresentacion(String name) {
 //        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        BorderLayout miLayout = new BorderLayout();
-        ventana.setLayout(miLayout);
+        this.setLayout(new BorderLayout());
         group.add(IV);
         group.add(PV);
 
@@ -66,15 +71,15 @@ public class ViewRepresentacion extends Panel {
         panelDerecha.add(comboList);
         panelDerecha.add(IV);
         panelDerecha.add(PV);
-        panelDerecha.setMaximumSize(new Dimension(500, 100));
-        panelDerecha.setMinimumSize(new Dimension(500, 100));
+        //panelDerecha.setMaximumSize(new Dimension(500, 100));
+        //panelDerecha.setMinimumSize(new Dimension(500, 100));
 
         // TablaIzquierda
         JPanel panelListaIzq = new JPanel();
         panelListaIzq.setLayout(new BoxLayout(panelListaIzq, 1));
-        listaIzq.setPreferredSize(new Dimension(260, 400));
-        listaIzq.setFont(new Font("Arial", Font.BOLD, 20));
-        panelListaIzq.add(listaIzqScroll);
+        //tablaIzquierda.setPreferredSize(new Dimension(260, 400));
+        //tablaIzquierda.setFont(new Font("Arial", Font.BOLD, 20));
+        panelListaIzq.add(tablaIzquierdaScroll);
 
         // Grafica (CENTRO)
         XYSeries IV = new XYSeries("Representar");
@@ -89,23 +94,20 @@ public class ViewRepresentacion extends Panel {
 
         ChartPanel panelGrafica = new ChartPanel(xyLine);
         panelGrafica.setLayout(new BoxLayout(panelGrafica, 1));
-        panelGrafica.setMaximumSize(new Dimension(300, 100));
-        panelGrafica.setMinimumSize(new Dimension(300, 100));
+        panelGrafica.setMaximumSize(new Dimension(300, 300));
+        panelGrafica.setMinimumSize(new Dimension(300, 300));
 
         // TablaInferior
         JPanel panelListaInf = new JPanel();
         panelListaInf.setLayout(new BoxLayout(panelListaInf, 1));
-        listaInf.setPreferredSize(new Dimension(260, 400));
-        listaInf.setFont(new Font("Arial", Font.BOLD, 20));
-        panelListaInf.add(listaInfScroll);
+        //tablaInferior.setPreferredSize(new Dimension(260, 200));
+        //tablaInferior.setFont(new Font("Arial", Font.BOLD, 20));
+        panelListaInf.add(tablaInferiorScroll);
 
-        ventana.add(panelGrafica, BorderLayout.CENTER);
-        ventana.add(panelDerecha, BorderLayout.EAST);
-        ventana.add(panelListaIzq, BorderLayout.WEST);
-        ventana.add(panelListaInf, BorderLayout.SOUTH);
-
-        ventana.setSize(1000, 600);
-        ventana.setVisible(true);
+        this.add(panelGrafica, BorderLayout.CENTER);
+        this.add(panelDerecha, BorderLayout.EAST);
+        this.add(panelListaIzq, BorderLayout.WEST);
+        this.add(panelListaInf, BorderLayout.SOUTH);
 
     }
 
@@ -117,7 +119,7 @@ public class ViewRepresentacion extends Panel {
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARCURVA));
         window.setVisible(true);
         window.pack();
-        window.setSize(800, 400);
+        window.setSize(1000, 600);
 //        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

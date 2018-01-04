@@ -25,7 +25,7 @@ public class CtrlMedida implements ActionListener{
         }
         if(e.getActionCommand().equals(ViewMedida.VERCURVA)) {
             if (mpanel.getSelectC() != null) {
-                final JFrame window = new JFrame();
+                final JFrame window = new JFrame("Representacion");
                 SwingUtilities.invokeLater(new Runnable(){
                     public void run() {
                         ViewRepresentacion.createGUI(window, mpanel.getSelectC());

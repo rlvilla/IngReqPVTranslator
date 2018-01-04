@@ -77,7 +77,6 @@ public class CtrlModulo implements ActionListener {
                     e1.printStackTrace();
                 }
             }
-
         }
         if(e.getActionCommand().equals(ViewModulo.ELIMINARMODULO)){
 		    if(panel.getSelect() !=null) {
