@@ -14,7 +14,11 @@ public class Medida {
     public Medida(Date fecha, String corr, Punto[] puntos) {
         this.id = IDsetter(fecha);
         this.fecha = fecha;
-        this.corr = corr;
+        if(corr.equals("ninguna")){
+            this.corr=null;
+        }else{
+            this.corr = corr;
+        }
         this.puntos = puntos;
     }
 

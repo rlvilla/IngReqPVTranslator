@@ -145,7 +145,17 @@ public class ViewRepresentacion extends Panel {
     }
 
     public void mostrarCurva(Punto[] puntos){
-
+        String[][] tabla = new String[puntos.length][3];
+        for(int i = 0; i<puntos.length;i++){
+            tabla[i][0] = Float.toString(puntos[i].getTension());
+            tabla[i][1] = Float.toString(puntos[i].getCorriente());
+            tabla[i][2] = Float.toString(puntos[i].getPotencia());
+        }
+        System.out.println("hola k tal buenas tardes");
+        model1.setRowCount(0);
+        for(String[] fila : tabla){
+            model1.addRow(fila);
+        }
     }
 
     public void mostrarIV(){

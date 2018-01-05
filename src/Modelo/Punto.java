@@ -11,6 +11,16 @@ public class Punto {
         potencia = W;
     }
 
+    public float getTension(){
+        return tension;
+    }
+    public float getCorriente(){
+        return corriente;
+    }
+    public float getPotencia(){
+        return potencia;
+    }
+
     public String toString(){
         return(order+":\n"+"V: "+tension+"\nI: "+ corriente+"\nP: "+potencia);
     }

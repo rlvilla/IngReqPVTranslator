@@ -126,8 +126,8 @@ public class FReader {
     }
 
     private String[] leerLineaPuntos(String linea) {
-        String aux[] = linea.split("\\s+");
-        String result[] = {aux[1], aux[2], aux[3]};
+        String[] aux = linea.split("\\s+");
+        String[] result = {aux[1], aux[2], aux[3]};
         return result;
     }
 
