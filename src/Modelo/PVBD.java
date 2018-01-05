@@ -113,6 +113,27 @@ public class PVBD {
     }
 
     public static void anadirPunto(String order, String[] values, String idm) {
-        miBD.insert("INSERT INTO PUNTO (idm, orden, tension, corriente, potencia) values (" + idm + "," + order + "," + values[0] + "," + values[1] + "," + values[2]+");");
+        miBD.insert("INSERT INTO PUNTO (idm, orden, Tension, Corriente, Potencia) values (" + idm + "," + order + "," + values[0] + "," + values[1] + "," + values[2]+");");
+    }
+
+    public static List<Punto> crearListaPunto(String medida) {
+        List<Punto> list = new ArrayList<>();
+        for (String[] st : PVBD.miBD.select("SELECT * FROM PUNTO WHERE idm = '" + medida + "';")) {
+            list.add(new Punto(Integer.parseInt(st[1]), Float.parseFloat(st[2]),Float.parseFloat(st[3]),Float.parseFloat(st[4])));
+        }
+        return list;
+    }
+    
+    public static String[][] leerListaPuntos(String medida){
+        List<Punto> listaPun = null;
+        listaPun = crearListaPunto(medida);
+
+        String[][] listaPunto = new String[listaPun.size()][1];
+        for (Punto pun : listaPun) {
+            listaPunto[listaPun.indexOf(pun)] = new String[]{Float.toString(pun.getTension()),
+                    Float.toString(pun.getCorriente()), Float.toString(pun.getPotencia())};
+
+        }
+        return listaPunto;
     }
 }

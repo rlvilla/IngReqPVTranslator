@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 
-import Modelo.Punto;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,25 +28,16 @@ public class ViewRepresentacion extends Panel {
     String[] izquierdanombres = {"V", "I", "P"};
     String[] inferiornombres = {"Nombre Medida", "V", "I", "P", "Correccion"};
 
-    // DATOS SIN IMPORTANCIA
-    Object[][] datosIzquierda = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
-    Object[][] datosInferior = {{"Medida1", 1, 1, 1, "Si"}, {"Medida2", 2, 2, 2, "Si"},
-            {"Medida3", 3, 3, 3, "Si"}};
+    JFreeChart xyLine;
 
-    // DECLARACION DE LAS TABLAS
-//    private JList listaIzq = new JList();
-//    private JScrollPane listaIzqScroll = new JScrollPane(listaIzq, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-//            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//    private JList listaInf = new JList();
-//    private JScrollPane listaInfScroll = new JScrollPane(listaInf, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-//            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//
     private DefaultTableModel model1 = new DefaultTableModel(null, izquierdanombres){
         public boolean isCellEditable(int row, int column) {
             return false;
         }
     };
     private JTable tablaIzquierda = new JTable(model1);
+    
+    private String[][] tablaModel;
 
     private JScrollPane tablaIzquierdaScroll = new JScrollPane(tablaIzquierda, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -65,14 +54,13 @@ public class ViewRepresentacion extends Panel {
     //Constantes de funciones
     static final String MOSTRARIV = "MOSTRAR CURVA IV";
     static final String MOSTRARPV = "MOSTRAR CURVA PV";
-    static final String MOSTRARCURVA = "Mostrar medidas";
+    static final String MOSTRARCURVA = "Mostrar curva";
     static final String CORREGIR = "Corregir curva";
 
     // Boton corregir
     private JButton bCorregir = new JButton("Corregir");
 
     public ViewRepresentacion(String name) {
-//        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         group.add(IV);
         group.add(PV);
@@ -99,6 +87,7 @@ public class ViewRepresentacion extends Panel {
         panelListaIzq.add(tablaIzquierdaScroll);
 
         // Grafica (CENTRO)
+
         XYSeries IV = new XYSeries("Representar");
         IV.add(1, 2);
         IV.add(3, 4);
@@ -106,7 +95,7 @@ public class ViewRepresentacion extends Panel {
         IV.add(4, 4);
         XYSeriesCollection datos = new XYSeriesCollection();
         datos.addSeries(IV);
-        JFreeChart xyLine = ChartFactory.createXYLineChart("Grafica IV", "I", "V", datos, PlotOrientation.VERTICAL,
+        xyLine = ChartFactory.createXYLineChart("Grafica IV", "I", "V", datos, PlotOrientation.VERTICAL,
                 true, true, false);
 
         ChartPanel panelGrafica = new ChartPanel(xyLine);
@@ -118,7 +107,6 @@ public class ViewRepresentacion extends Panel {
         JPanel panelListaInf = new JPanel();
         panelListaInf.setLayout(new BoxLayout(panelListaInf, 1));
         tablaInferiorScroll.setPreferredSize(new Dimension(500, 200));
-        //tablaInferior.setFont(new Font("Arial", Font.BOLD, 20));
         panelListaInf.add(tablaInferiorScroll);
 
         this.add(panelListaIzq, BorderLayout.WEST);
@@ -137,33 +125,45 @@ public class ViewRepresentacion extends Panel {
         window.setVisible(true);
         window.pack();
         window.setSize(1000, 600);
-//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void setController(CtrlRepresentacion ctr) {
         bCorregir.addActionListener(ctr);
+        IV.addActionListener(ctr);
+        PV.addActionListener(ctr);
     }
 
-    public void mostrarCurva(Punto[] puntos){
-        String[][] tabla = new String[puntos.length][3];
-        for(int i = 0; i<puntos.length;i++){
-            tabla[i][0] = Float.toString(puntos[i].getTension());
-            tabla[i][1] = Float.toString(puntos[i].getCorriente());
-            tabla[i][2] = Float.toString(puntos[i].getPotencia());
-        }
-        System.out.println("hola k tal buenas tardes");
+    public void muestraPuntos(String[][] tablaMod) {
         model1.setRowCount(0);
-        for(String[] fila : tabla){
-            model1.addRow(fila);
+        tablaModel = tablaMod;
+        XYSeries IV = new XYSeries("Representar");
+        for (String[] line : tablaModel) {
+            model1.addRow(line);
+            IV.add(Double.parseDouble(line[1]),Double.parseDouble(line[0]));
         }
+        XYSeriesCollection datos = new XYSeriesCollection();
+        datos.addSeries(IV);
+        xyLine.getXYPlot().setDataset(datos);
     }
 
     public void mostrarIV(){
-
+        XYSeries IV = new XYSeries("Representar");
+        for (String[] line : tablaModel) {
+            IV.add(Double.parseDouble(line[1]),Double.parseDouble(line[0]));
+        }
+        XYSeriesCollection datos = new XYSeriesCollection();
+        datos.addSeries(IV);
+        xyLine.getXYPlot().setDataset(datos);
     }
 
     public void mostrarPV(){
-
+        XYSeries PV = new XYSeries("Representar");
+        for (String[] line : tablaModel) {
+            PV.add(Double.parseDouble(line[2]),Double.parseDouble(line[0]));
+        }
+        XYSeriesCollection datos = new XYSeriesCollection();
+        datos.addSeries(PV);
+        xyLine.getXYPlot().setDataset(datos);
     }
 
 }
