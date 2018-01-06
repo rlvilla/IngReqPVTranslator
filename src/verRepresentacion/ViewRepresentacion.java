@@ -16,8 +16,11 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class ViewRepresentacion extends Panel {
+
+    private int id;
+
     // Desplegable
-    String[] opcionesCombo = {"medida1", "medida2", "medida3"};
+    String[] opcionesCombo = {"Metodo1", "Metodo2", "Metodo3"};
     JComboBox comboList = new JComboBox(opcionesCombo);
     // RadioButton de los IV/PV
     JRadioButton IV = new JRadioButton("IV", true);
@@ -60,7 +63,10 @@ public class ViewRepresentacion extends Panel {
     // Boton corregir
     private JButton bCorregir = new JButton("Corregir");
 
-    public ViewRepresentacion(String name) {
+    public ViewRepresentacion(int id) {
+
+        this.id = id;
+
         this.setLayout(new BorderLayout());
         group.add(IV);
         group.add(PV);
@@ -90,9 +96,6 @@ public class ViewRepresentacion extends Panel {
 
         XYSeries IV = new XYSeries("Representar");
         IV.add(1, 2);
-        IV.add(3, 4);
-        IV.add(1, 1);
-        IV.add(4, 4);
         XYSeriesCollection datos = new XYSeriesCollection();
         datos.addSeries(IV);
         xyLine = ChartFactory.createXYLineChart("Grafica IV", "I", "V", datos, PlotOrientation.VERTICAL,
@@ -116,8 +119,8 @@ public class ViewRepresentacion extends Panel {
 
     }
 
-    public static void createGUI(JFrame window, String name, int id) throws ParseException{
-        ViewRepresentacion panel = new ViewRepresentacion(name);
+    public static void createGUI(JFrame window, int id) throws ParseException{
+        ViewRepresentacion panel = new ViewRepresentacion(id);
         CtrlRepresentacion ctr = new CtrlRepresentacion(panel, id);
         panel.setController(ctr);
         window.setContentPane(panel);
@@ -164,6 +167,18 @@ public class ViewRepresentacion extends Panel {
         XYSeriesCollection datos = new XYSeriesCollection();
         datos.addSeries(PV);
         xyLine.getXYPlot().setDataset(datos);
+    }
+
+    public int getID(){
+        return id;
+    }
+
+    public String getSelectC(){
+        return comboList.getSelectedItem().toString();
+    }
+
+    public String[][] getModel (){
+        return tablaModel;
     }
 
 }

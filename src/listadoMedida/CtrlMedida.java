@@ -30,7 +30,7 @@ public class CtrlMedida implements ActionListener {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         try {
-                            ViewRepresentacion.createGUI(window, mpanel.getSelectC(), mpanel.getSelectID());
+                            ViewRepresentacion.createGUI(window, mpanel.getSelectID());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }

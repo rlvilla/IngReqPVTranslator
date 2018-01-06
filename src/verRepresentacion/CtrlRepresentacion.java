@@ -3,7 +3,9 @@ package verRepresentacion;
 import Modelo.Medida;
 import Modelo.PVBD;
 import Modelo.Punto;
+import verCorregida.ViewCorregida;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -24,7 +26,14 @@ public class CtrlRepresentacion implements ActionListener {
             panel.muestraPuntos(PVBD.leerListaPuntos(Integer.toString(idm)));
         }
         if (event.getActionCommand().equals(ViewRepresentacion.CORREGIR)) {
-
+            if (panel.getSelectC().equals("Metodo2")) {
+                final JFrame window = new JFrame("Correccion");
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        ViewCorregida.createGUI(window, panel.getID());
+                    }
+                });
+            }
         }
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARIV)) {
             panel.mostrarIV();
