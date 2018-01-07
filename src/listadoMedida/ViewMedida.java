@@ -86,7 +86,7 @@ public class ViewMedida extends Panel{
             try {
                 return Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                         .parse(tablaM.getValueAt(tablaM.getSelectedRow()
-                                , 0) + " " + tablaM.getValueAt(tablaM.getSelectedRow(), 1)));
+                                , 0) + " " + tablaM.getValueAt(tablaM.getSelectedRow(), 1)), jName.getText());
             } catch (ParseException e) {
                 e.printStackTrace();
             }

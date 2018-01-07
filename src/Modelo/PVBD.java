@@ -13,7 +13,7 @@ public class PVBD {
         List<Modulo> listaMod = new ArrayList<>();
         for (Object[] mod : miBD.select("SELECT * FROM MODULO")) {
             listaMod.add(new Modulo((String) mod[0], Float.parseFloat((String) mod[1]), Float.parseFloat((String) mod[2]),
-                    Float.parseFloat((String) mod[3]), Float.parseFloat((String) mod[4])));
+                    Float.parseFloat((String) mod[3]), Float.parseFloat((String) mod[4]), Float.parseFloat((String)mod[5])));
         }
         return listaMod;
     }
