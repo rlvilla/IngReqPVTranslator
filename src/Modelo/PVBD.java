@@ -34,9 +34,9 @@ public class PVBD {
         }
     }
 
-    public static void anadirModulo(String name, String alpha, String beta, String gamma, String kappa) {
-        miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa) values ('" + name + "', " + alpha +
-                ", " + beta + ", " + gamma + ", " + kappa + ");");
+    public static void anadirModulo(String name, String alpha, String beta, String gamma, String kappa, String Rs) {
+        miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa, Rs) values ('" + name + "', " + alpha +
+                ", " + beta + ", " + gamma + ", " + kappa + ","+Rs+");");
     }
 
     public static void eliminarModulo(String name) {
@@ -69,7 +69,7 @@ public class PVBD {
 
     public static void anadirCampana(String nombre, String modulo, String diaIni, String diaFin) {
         if (!modulo.equals(PVBD.miBD.selectEscalar("Select Nombre FROM MODULO WHERE Nombre = '" + modulo + "'"))) {
-            PVBD.anadirModulo(modulo, "0", "0", "0", "0");
+            PVBD.anadirModulo(modulo, "0", "0", "0", "0", "0");
         }
         PVBD.miBD.insert("INSERT INTO CAMPANA(NOMBRE, MODULO, DIAINI, DIAFIN) VALUES ('" + nombre + "', '" + modulo +
                 "', '" + diaIni + "', '" + diaFin + "')");
@@ -82,7 +82,7 @@ public class PVBD {
     public static List<Medida> crearListaMedida(String campana) throws ParseException {
         List<Medida> list = new ArrayList<>();
         for (String[] st : PVBD.miBD.select("SELECT * FROM MEDIDA WHERE CAMPANA = '" + campana + "';")) {
-            list.add(new Medida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
+            list.add(new Medida(st[0],new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
         }
         return list;
     }
@@ -103,7 +103,7 @@ public class PVBD {
 
     public static void anadirMedida(String[] campanaMedidas, String date) throws ParseException {
         PVBD.miBD.insert("INSERT INTO MEDIDA (Campana, idm, fecha, hora, Correccion, Isc, Voc, PMax, IPmax, VPmax, FF, VViento, DirViento, HumedadRel, TempAmbiente, Piranometro, RTD, CelulaIso) VALUES ('" +
-                campanaMedidas[1] + "', " + Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3])) +
+                campanaMedidas[1] + "', " + Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3]),campanaMedidas[1]) +
                 ", '" + date + "', '" + campanaMedidas[3] + "', '" + campanaMedidas[4] + "', " + campanaMedidas[5] + ", " + campanaMedidas[6] + ", " + campanaMedidas[7] + ", " + campanaMedidas[8] + ", " + campanaMedidas[9] +
                 ", " + campanaMedidas[10] + ", " + campanaMedidas[11] + ", " + campanaMedidas[12] + ", " + campanaMedidas[13] + ", " + campanaMedidas[14] + ", " + campanaMedidas[15] + ", " + campanaMedidas[16] + ", " + campanaMedidas[17] + ");");
     }

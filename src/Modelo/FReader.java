@@ -96,9 +96,9 @@ public class FReader {
         String name = "puntos.xls";
         fichero = parseFile(fichero, name);
         Scanner sc;
-        try{
+        try {
             sc = new Scanner(fichero);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             name = "puntos1.xls";
             fichero = parseFile(fichero, name);
             sc = new Scanner(fichero);
@@ -139,7 +139,7 @@ public class FReader {
         int cont = 1;
         int aux = 0;
         Scanner sc = new Scanner(fichero);
-        String[] datosModulo = new String[9];
+        String[] datosModulo = new String[10];
 
         while ((sc.hasNextLine() && (cont < 23))) {
             String linea = sc.nextLine();
@@ -170,10 +170,13 @@ public class FReader {
             } else if (cont == 22) {
                 datosModulo[aux] = "mOhm/ºC";
                 aux++;
-            }
-            cont++;
+            }else if (cont == 38) {
+            datosModulo[aux] = linea;
+            aux++;
         }
-        sc.close();
-        return (datosModulo);
+        cont++;
     }
+        sc.close();
+        return(datosModulo);
+}
 }

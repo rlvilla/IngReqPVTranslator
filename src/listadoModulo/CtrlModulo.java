@@ -34,7 +34,7 @@ public class CtrlModulo implements ActionListener {
                 File file = jfile.getSelectedFile();
                 try {
                     String[] modulo = freader.leerFicheroModulo(file);
-                    PVBD.anadirModulo(modulo[0], modulo[1], modulo[3], modulo[5], modulo[7]);
+                    PVBD.anadirModulo(modulo[0], modulo[1], modulo[3], modulo[5], modulo[7], modulo[9]);
                     panel.muestraModulos(PVBD.leerListaModulo());
                 } catch (FileNotFoundException error) {
                     error.printStackTrace();
@@ -69,7 +69,7 @@ public class CtrlModulo implements ActionListener {
                         }
                         //Introducción de la medida en la base de datos
                         PVBD.anadirMedida(campanaMedidas, date);
-                        int idMedida = Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3]));
+                        int idMedida = Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3]), campanaMedidas[1]);
                         Map<String, String[]> puntosCurva = freader.leerPuntosCurva(file);
                         for (int i = 0; i < puntosCurva.size(); i++) {
                             String[] valores = puntosCurva.get(Integer.toString(i));
