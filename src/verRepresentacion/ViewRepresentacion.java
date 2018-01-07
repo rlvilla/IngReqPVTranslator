@@ -20,7 +20,7 @@ public class ViewRepresentacion extends Panel {
     private int id;
 
     // Desplegable
-    String[] opcionesCombo = {"Metodo1", "Metodo2", "Metodo3"};
+    String[] opcionesCombo = {"IEC-60891_1", "IEC-60891_2", "IEC-60891_3", "ASTM E1036"};
     JComboBox comboList = new JComboBox(opcionesCombo);
     // RadioButton de los IV/PV
     JRadioButton IV = new JRadioButton("IV", true);

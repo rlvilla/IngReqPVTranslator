@@ -136,4 +136,8 @@ public class PVBD {
         }
         return listaPunto;
     }
+
+    public static void anadirCorregida(int idm, int idc, String corr, float isc, float voc, float pmax, float ipmax, float vpmax){
+        miBD.insert("INSERT INTO CORREGIDA (idm, idc, Correccion, Isc, Voc, PMax, IPMax, VPMax) VALUES("+idm+","+idc+",'"+corr+"',"+isc+","+voc+","+pmax+","+ipmax+","+vpmax+");");
+    }
 }

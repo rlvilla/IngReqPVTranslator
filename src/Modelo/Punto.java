@@ -21,6 +21,8 @@ public class Punto {
         return potencia;
     }
 
+    public int getOrder() {return order;}
+
     public String toString(){
         return(order+":\n"+"V: "+tension+"\nI: "+ corriente+"\nP: "+potencia);
     }
