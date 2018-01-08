@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -163,5 +164,18 @@ public class PVBD {
             listaMedida[listaMed.indexOf(med)] = new String[]{med[2], med[3], med[4], med[5], med[6], med[7]};
         }
         return listaMedida;
+    }
+
+    public static String [] leerDatos (int id){
+        String [] datos = new String [8];
+       datos[0] = miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[5];
+       datos [1] =miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[6];
+       datos[2]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[7];
+       datos[3]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[8];
+       datos[4]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[9];
+       datos[5]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[14];
+       datos[6]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[15];
+         return datos;
+
     }
 }

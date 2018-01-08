@@ -4,6 +4,7 @@ package verRepresentacion;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
+import java.util.StringTokenizer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -63,7 +64,9 @@ public class ViewRepresentacion extends Panel {
 
     // Boton corregir
     private JButton bCorregir = new JButton("Corregir");
-
+    private JTextArea datosArea = new JTextArea();
+    private JScrollPane datosAreaScroll = new JScrollPane(datosArea, JScrollPane. VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     public ViewRepresentacion(int id) {
 
         this.id = id;
@@ -77,13 +80,20 @@ public class ViewRepresentacion extends Panel {
         IV.setActionCommand(MOSTRARIV);
         PV.setActionCommand(MOSTRARPV);
         panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.PAGE_AXIS));
+        comboList.setPreferredSize(new Dimension (200,20));
+        comboList.setMaximumSize(new Dimension (200,20));
+        comboList.setMinimumSize(new Dimension (200,20));
+        panelDerecha.add(comboList);
         panelDerecha.add(bCorregir);
         bCorregir.setActionCommand(CORREGIR);
-        panelDerecha.add(comboList);
         panelDerecha.add(IV);
         panelDerecha.add(PV);
-        //panelDerecha.setMaximumSize(new Dimension(500, 100));
-        //panelDerecha.setMinimumSize(new Dimension(500, 100));
+        datosArea.setEditable(false);
+
+        panelDerecha.add(datosAreaScroll);
+        //panelDerecha.setMaximumSize(new Dimension(260, 400));
+        //panelDerecha.setMinimumSize(new Dimension(260, 400));
+        panelDerecha.setPreferredSize(new Dimension(260, 100));
 
         // TablaIzquierda
         JPanel panelListaIzq = new JPanel();
@@ -136,6 +146,17 @@ public class ViewRepresentacion extends Panel {
         IV.addActionListener(ctr);
         PV.addActionListener(ctr);
     }
+    public void muestradatos(String []  s){
+        StringBuilder sb = new StringBuilder("Isc: ");
+        sb.append(s[0].toString() + " \nVoc: ");
+        sb.append(s[1].toString() + " \nPmax: ");
+        sb.append(s[2].toString() + " \nIPmax: ");
+        sb.append(s[3].toString() + " \nVPmax: ");
+        sb.append(s[4].toString() + " \nTemperatura Ambiente: " );
+        sb.append(s[5].toString() + "ºC \nIrradiancia: " );
+        sb.append(s[6].toString() );
+        datosArea.setText(sb.toString());
+    }
 
     public void muestraPuntos(String[][] tablaPuntos, String[][] tablaMedidasCorr) {
         model1.setRowCount(0);
@@ -153,6 +174,7 @@ public class ViewRepresentacion extends Panel {
         XYSeriesCollection datos = new XYSeriesCollection();
         datos.addSeries(IV);
         xyLine.getXYPlot().setDataset(datos);
+
     }
 
     public void mostrarIV(){
