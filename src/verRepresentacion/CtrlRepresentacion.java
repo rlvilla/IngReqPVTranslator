@@ -70,6 +70,8 @@ public class CtrlRepresentacion implements ActionListener {
             if (method.equals("IEC-60891_2")){
 
             }
+            panel.muestraPuntos(PVBD.leerListaPuntos(Integer.toString(idm)),PVBD.leerListaMedidaCorregida(idm));
+            panel.muestradatos(PVBD.leerDatos(idm));
         }
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARIV)) {
             panel.mostrarIV();
