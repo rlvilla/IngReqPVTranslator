@@ -12,12 +12,13 @@ import java.text.ParseException;
 public class CtrlCorregida implements ActionListener {
 
     private ViewCorregida panel;
-    private int idm;
+    private int idm, idc;
 
 
-    public CtrlCorregida(ViewCorregida panel, int idm) {
+    public CtrlCorregida(ViewCorregida panel, int idm, int idc) {
         this.panel = panel;
         this.idm = idm;
+        this.idc = idc
     }
 
     public void actionPerformed(ActionEvent e) {

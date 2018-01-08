@@ -140,4 +140,8 @@ public class PVBD {
     public static void anadirCorregida(int idm, int idc, String corr, float isc, float voc, float pmax, float ipmax, float vpmax) {
         miBD.insert("INSERT INTO CORREGIDA (idm, idc, Correccion, Isc, Voc, PMax, IPMax, VPMax) VALUES(" + idm + "," + idc + ",'" + corr + "'," + isc + "," + voc + "," + pmax + "," + ipmax + "," + vpmax + ");");
     }
+
+    public static void anadirPuntoCorregido(int id, int idc, int order, float tension, float corriente, float potencia) {
+        miBD.insert("INSERT INTO PUNTO (idm, idc, orden, Tension, Corriente, Potencia) values (" + id + "," + idc + "," + order + "," + tension + "," + corriente + "," + potencia + ");");
+    }
 }
