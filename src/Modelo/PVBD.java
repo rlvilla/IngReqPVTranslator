@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -139,5 +140,18 @@ public class PVBD {
 
     public static void anadirCorregida(int idm, int idc, String corr, float isc, float voc, float pmax, float ipmax, float vpmax) {
         miBD.insert("INSERT INTO CORREGIDA (idm, idc, Correccion, Isc, Voc, PMax, IPMax, VPMax) VALUES(" + idm + "," + idc + ",'" + corr + "'," + isc + "," + voc + "," + pmax + "," + ipmax + "," + vpmax + ");");
+    }
+
+    public static String [] leerDatos (int id){
+        String [] datos = new String [8];
+       datos[0] = miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[5];
+       datos [1] =miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[6];
+       datos[2]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[7];
+       datos[3]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[8];
+       datos[4]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[9];
+       datos[5]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[14];
+       datos[6]=miBD.select("SELECT * FROM MEDIDA WHERE idm = '"+id+"';").get(0)[15];
+         return datos;
+
     }
 }
