@@ -25,5 +25,11 @@ public class CtrlCorregida implements ActionListener {
         if (e.getActionCommand().equals(ViewCorregida.MOSTRARCORREGIDAS)) {
             panel.muestraPuntos(PVBD.leerListaPuntosCorregidos(Integer.toString(idm), Integer.toString(idc)));
         }
+        if (e.getActionCommand().equals(ViewCorregida.MOSTRARIV)) {
+            panel.mostrarIV();
+        }
+        if (e.getActionCommand().equals(ViewCorregida.MOSTRARPV)) {
+            panel.mostrarPV();
+        }
     }
 }

@@ -3,6 +3,8 @@ package verRepresentacion;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.StringTokenizer;
 
@@ -21,16 +23,16 @@ public class ViewRepresentacion extends Panel {
     private int id;
 
     // Desplegable
-    String[] opcionesCombo = {"IEC-60891_1", "IEC-60891_2", "IEC-60891_3", "ASTM E1036"};
-    JComboBox comboList = new JComboBox(opcionesCombo);
+    private String[] opcionesCombo = {"IEC-60891_1", "IEC-60891_2", "IEC-60891_3", "ASTM E1036"};
+    private JComboBox comboList = new JComboBox(opcionesCombo);
     // RadioButton de los IV/PV
-    JRadioButton IV = new JRadioButton("IV", true);
-    JRadioButton PV = new JRadioButton("PV", false);
-    ButtonGroup group = new ButtonGroup();
+    private JRadioButton IV = new JRadioButton("IV", true);
+    private JRadioButton PV = new JRadioButton("PV", false);
+    private ButtonGroup group = new ButtonGroup();
 
     // Modelo para que no se pueda deditar ninguna de las tablas
-    String[] izquierdanombres = {"V", "I", "P"};
-    String[] inferiornombres = {"Correccion", "Isc", "Voc", "PMax", "IPMax", "VPMax"};
+    private String[] izquierdanombres = {"V", "I", "P"};
+    private String[] inferiornombres = {"Correccion", "Isc", "Voc", "PMax", "IPMax", "VPMax"};
 
     JFreeChart xyLine;
 
@@ -61,17 +63,30 @@ public class ViewRepresentacion extends Panel {
     static final String MOSTRARPV = "MOSTRAR CURVA PV";
     static final String MOSTRARCURVA = "Mostrar curva";
     static final String CORREGIR = "Corregir curva";
+    static final String MOSTRARCORREGIDA = "Mostrar curva corregida";
 
     // Boton corregir
     private JButton bCorregir = new JButton("Corregir");
     private JTextArea datosArea = new JTextArea();
     private JScrollPane datosAreaScroll = new JScrollPane(datosArea, JScrollPane. VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+    private JButton bMostrarCorr = new JButton("Mostrar corregida");
+
     public ViewRepresentacion(int id) {
 
         this.id = id;
 
         this.setLayout(new BorderLayout());
+
+        tablaInferior.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    bMostrarCorr.doClick();
+                }
+            }
+        });
+
         group.add(IV);
         group.add(PV);
 
@@ -89,8 +104,9 @@ public class ViewRepresentacion extends Panel {
         panelDerecha.add(IV);
         panelDerecha.add(PV);
         datosArea.setEditable(false);
-
         panelDerecha.add(datosAreaScroll);
+        panelDerecha.add(bMostrarCorr);
+        bMostrarCorr.setActionCommand(MOSTRARCORREGIDA);
         //panelDerecha.setMaximumSize(new Dimension(260, 400));
         //panelDerecha.setMinimumSize(new Dimension(260, 400));
         panelDerecha.setPreferredSize(new Dimension(260, 100));
@@ -145,7 +161,16 @@ public class ViewRepresentacion extends Panel {
         bCorregir.addActionListener(ctr);
         IV.addActionListener(ctr);
         PV.addActionListener(ctr);
+        bMostrarCorr.addActionListener(ctr);
     }
+
+    public String getSelectCorr(){
+        if (tablaInferior.getSelectedRow() >=0)
+            return (String)tablaInferior.getValueAt(tablaInferior.getSelectedRow(),0);
+        else
+            return null;
+    }
+
     public void muestradatos(String []  s){
         StringBuilder sb = new StringBuilder("Isc: ");
         sb.append(s[0].toString() + " \nVoc: ");
@@ -196,6 +221,8 @@ public class ViewRepresentacion extends Panel {
         datos.addSeries(PV);
         xyLine.getXYPlot().setDataset(datos);
     }
+
+
 
     public int getID(){
         return id;

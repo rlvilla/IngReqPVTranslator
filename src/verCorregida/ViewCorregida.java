@@ -46,6 +46,7 @@ public class ViewCorregida extends Panel {
     static final String MOSTRARPV ="MOSTRAR CURVA PV";
     static final String MOSTRARCORREGIDAS = "MOSTRAR CURVAS CORREGIDAS";
 
+
     public ViewCorregida() {
         this.setLayout(new BorderLayout());
         group.add(IV);
@@ -138,5 +139,4 @@ public class ViewCorregida extends Panel {
         datos.addSeries(PV);
         xyLine.getXYPlot().setDataset(datos);
     }
-
 }

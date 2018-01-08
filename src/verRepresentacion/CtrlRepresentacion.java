@@ -97,7 +97,6 @@ public class CtrlRepresentacion implements ActionListener {
                     }
                 });
 
-
             }
             if (method.equals("IEC-60891_2")){
 
@@ -110,6 +109,14 @@ public class CtrlRepresentacion implements ActionListener {
         }
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARPV)) {
             panel.mostrarPV();
+        }
+        if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARCORREGIDA)) {
+            final JFrame window = new JFrame("Correccion");
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    ViewCorregida.createGUI(window, idm, panel.getSelectCorr().hashCode());
+                }
+            });
         }
     }
 
