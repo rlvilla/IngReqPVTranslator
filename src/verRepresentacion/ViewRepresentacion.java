@@ -111,7 +111,7 @@ public class ViewRepresentacion extends Panel {
         datos.addSeries(IV);
         xyLine = ChartFactory.createXYLineChart("Grafica IV", "I", "V", datos, PlotOrientation.VERTICAL,
                 true, true, false);
-
+        //xyLine.
         ChartPanel panelGrafica = new ChartPanel(xyLine);
         panelGrafica.setLayout(new BoxLayout(panelGrafica, 1));
         panelGrafica.setMaximumSize(new Dimension(300, 300));

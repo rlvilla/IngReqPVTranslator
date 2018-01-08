@@ -54,10 +54,45 @@ public class CtrlRepresentacion implements ActionListener {
                 float ipMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getCorriente();
                 float vpMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getTension();
 
-                PVBD.anadirCorregida(idm,idc,method+"_"+g2+"_"+t2,0,0,pMax,ipMax,vpMax);
+                String[][] model = new String[100][3];
+                int k = 0;
+                for (Punto punto : nuevosPuntos) {
+                    model[k][0] = Float.toString(punto.getTension());
+                    model[k][1] = Float.toString(punto.getCorriente());
+                    model[k][2] = Float.toString(punto.getPotencia());
+                    k++;
+                }
+                //model = panel.getModel();
+                float init = Float.parseFloat(model[0][0]);
+                float maybe = Float.parseFloat(model[1][0]);
+                int i = 2;
+                while(i < 100 && maybe <= 0){
+                    init = maybe;
+                    maybe = Float.parseFloat(model[i][0]);
+                    i++;
+                }
+                float isc = Float.parseFloat(model[i-2][1]) - ((-init/(maybe - init)) * (Float.parseFloat(model[i-2][1])-Float.parseFloat(model[i-1][1])));
+                if (isc < 0.001 && isc > -0.001) isc = 0;
+                //System.out.println(isc);
+
+                init = Float.parseFloat(model[0][1]);
+                maybe = Float.parseFloat(model[1][1]);
+                i = 2;
+                while(i < 100){
+                    if (maybe < 0) break;
+                    init = maybe;
+                    maybe = Float.parseFloat(model[i][1]);
+                    i++;
+                }
+                float voc = Float.parseFloat(model[i-2][0]) + ((init/(-maybe + init)) * (Float.parseFloat(model[i-1][0])-Float.parseFloat(model[i-2][0])));
+                //System.out.println(Float.parseFloat(model[i-2][0]) + ((init/(-maybe + init)) * (Float.parseFloat(model[i-1][0])-Float.parseFloat(model[i-2][0]))));
+                PVBD.anadirCorregida(idm,idc,method+"_"+g2+"_"+t2,isc,voc,pMax,ipMax,vpMax);
                 for(Punto punto : nuevosPuntos) {
                     PVBD.anadirPuntoCorregido(idm, idc, punto.getOrder(), punto.getTension(), punto.getCorriente(), punto.getPotencia());
                 }
+
+            }
+            if (method.equals("IEC-60891_2")){
 
                 final JFrame window = new JFrame("Correccion");
                 SwingUtilities.invokeLater(new Runnable() {

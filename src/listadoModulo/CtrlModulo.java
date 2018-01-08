@@ -109,7 +109,7 @@ public class CtrlModulo implements ActionListener {
 
         }
         if (e.getActionCommand().equals(ViewModulo.MOSTRARMODULOS)) {
-            panel.muestraModulos(PVBD.leerListaModulo());
+           panel.muestraModulos(PVBD.leerListaModulo());
         }
     }
 
