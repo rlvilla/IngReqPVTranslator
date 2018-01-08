@@ -111,12 +111,16 @@ public class CtrlRepresentacion implements ActionListener {
             panel.mostrarPV();
         }
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARCORREGIDA)) {
-            final JFrame window = new JFrame("Correccion");
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    ViewCorregida.createGUI(window, idm, panel.getSelectCorr().hashCode());
-                }
-            });
+            if (panel.getSelectCorr() != null) {
+                final JFrame window = new JFrame("Corrección");
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        ViewCorregida.createGUI(window, idm, panel.getSelectCorr().hashCode());
+                    }
+                });
+            } else {
+                JOptionPane.showMessageDialog(panel, "No has seleccionado ninguna medida", "Error: 507", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
