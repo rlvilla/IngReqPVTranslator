@@ -30,8 +30,7 @@ public class CtrlRepresentacion implements ActionListener {
                 float isc1 = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT Isc FROM MEDIDA WHERE idm = " + idm + ";"));
                 float g1 = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT Piranometro FROM MEDIDA WHERE idm = " + idm + ";"));
                 float t1 = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT TempAmbiente FROM MEDIDA WHERE idm = " + idm + ";"));
-                //TODO pop-up para introducir g2 y t2
-                float g2 = Float.parseFloat(JOptionPane.showInputDialog(panel, "Introduce Piranometro:\n", "Introducción de datos", JOptionPane.PLAIN_MESSAGE));
+                float g2 = Float.parseFloat(JOptionPane.showInputDialog(panel, "Introduce Irradiancia:\n", "Introducción de datos", JOptionPane.PLAIN_MESSAGE));
                 float t2 = Float.parseFloat(JOptionPane.showInputDialog(panel, "Introduce Temperatura Ambiente:\n", "Introducción de datos", JOptionPane.PLAIN_MESSAGE));
                 int idc = (method + "_" + g2 + "_" + t2).hashCode();
                 float alpha = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT alpha FROM MEDIDA INNER JOIN CAMPANA" +

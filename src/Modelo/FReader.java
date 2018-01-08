@@ -141,7 +141,7 @@ public class FReader {
         Scanner sc = new Scanner(fichero);
         String[] datosModulo = new String[10];
 
-        while ((sc.hasNextLine() && (cont < 23))) {
+        while ((sc.hasNextLine() && (cont < 39))) {
             String linea = sc.nextLine();
             if (cont == 1) {
                 datosModulo[aux] = linea;
@@ -170,13 +170,13 @@ public class FReader {
             } else if (cont == 22) {
                 datosModulo[aux] = "mOhm/ºC";
                 aux++;
-            }else if (cont == 38) {
-            datosModulo[aux] = linea;
-            aux++;
+            } else if (cont == 38) {
+                datosModulo[aux] = linea;
+                aux++;
+            }
+            cont++;
         }
-        cont++;
-    }
         sc.close();
-        return(datosModulo);
-}
+        return (datosModulo);
+    }
 }

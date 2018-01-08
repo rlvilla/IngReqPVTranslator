@@ -13,7 +13,7 @@ public class PVBD {
         List<Modulo> listaMod = new ArrayList<>();
         for (Object[] mod : miBD.select("SELECT * FROM MODULO")) {
             listaMod.add(new Modulo((String) mod[0], Float.parseFloat((String) mod[1]), Float.parseFloat((String) mod[2]),
-                    Float.parseFloat((String) mod[3]), Float.parseFloat((String) mod[4]), Float.parseFloat((String)mod[5])));
+                    Float.parseFloat((String) mod[3]), Float.parseFloat((String) mod[4]), Float.parseFloat((String) mod[5])));
         }
         return listaMod;
     }
@@ -36,7 +36,7 @@ public class PVBD {
 
     public static void anadirModulo(String name, String alpha, String beta, String gamma, String kappa, String Rs) {
         miBD.insert("INSERT INTO MODULO (Nombre, alpha, beta, gamma, kappa, Rs) values ('" + name + "', " + alpha +
-                ", " + beta + ", " + gamma + ", " + kappa + ","+Rs+");");
+                ", " + beta + ", " + gamma + ", " + kappa + ", " + Rs + ");");
     }
 
     public static void eliminarModulo(String name) {
@@ -82,7 +82,7 @@ public class PVBD {
     public static List<Medida> crearListaMedida(String campana) throws ParseException {
         List<Medida> list = new ArrayList<>();
         for (String[] st : PVBD.miBD.select("SELECT * FROM MEDIDA WHERE CAMPANA = '" + campana + "';")) {
-            list.add(new Medida(st[0],new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
+            list.add(new Medida(st[0], new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(st[2] + " " + st[3]), st[4], null));
         }
         return list;
     }
@@ -103,7 +103,7 @@ public class PVBD {
 
     public static void anadirMedida(String[] campanaMedidas, String date) throws ParseException {
         PVBD.miBD.insert("INSERT INTO MEDIDA (Campana, idm, fecha, hora, Correccion, Isc, Voc, PMax, IPmax, VPmax, FF, VViento, DirViento, HumedadRel, TempAmbiente, Piranometro, RTD, CelulaIso) VALUES ('" +
-                campanaMedidas[1] + "', " + Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3]),campanaMedidas[1]) +
+                campanaMedidas[1] + "', " + Medida.IDsetter(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(campanaMedidas[2] + " " + campanaMedidas[3]), campanaMedidas[1]) +
                 ", '" + date + "', '" + campanaMedidas[3] + "', '" + campanaMedidas[4] + "', " + campanaMedidas[5] + ", " + campanaMedidas[6] + ", " + campanaMedidas[7] + ", " + campanaMedidas[8] + ", " + campanaMedidas[9] +
                 ", " + campanaMedidas[10] + ", " + campanaMedidas[11] + ", " + campanaMedidas[12] + ", " + campanaMedidas[13] + ", " + campanaMedidas[14] + ", " + campanaMedidas[15] + ", " + campanaMedidas[16] + ", " + campanaMedidas[17] + ");");
     }
@@ -113,18 +113,18 @@ public class PVBD {
     }
 
     public static void anadirPunto(String order, String[] values, String idm) {
-        miBD.insert("INSERT INTO PUNTO (idm, orden, Tension, Corriente, Potencia) values (" + idm + "," + order + "," + values[0] + "," + values[1] + "," + values[2]+");");
+        miBD.insert("INSERT INTO PUNTO (idm, orden, Tension, Corriente, Potencia) values (" + idm + "," + order + "," + values[0] + "," + values[1] + "," + values[2] + ");");
     }
 
     public static List<Punto> crearListaPunto(String medida) {
         List<Punto> list = new ArrayList<>();
         for (String[] st : PVBD.miBD.select("SELECT * FROM PUNTO WHERE idm = '" + medida + "';")) {
-            list.add(new Punto(Integer.parseInt(st[1]), Float.parseFloat(st[2]),Float.parseFloat(st[3]),Float.parseFloat(st[4])));
+            list.add(new Punto(Integer.parseInt(st[1]), Float.parseFloat(st[2]), Float.parseFloat(st[3]), Float.parseFloat(st[4])));
         }
         return list;
     }
-    
-    public static String[][] leerListaPuntos(String medida){
+
+    public static String[][] leerListaPuntos(String medida) {
         List<Punto> listaPun = null;
         listaPun = crearListaPunto(medida);
 
@@ -137,7 +137,7 @@ public class PVBD {
         return listaPunto;
     }
 
-    public static void anadirCorregida(int idm, int idc, String corr, float isc, float voc, float pmax, float ipmax, float vpmax){
-        miBD.insert("INSERT INTO CORREGIDA (idm, idc, Correccion, Isc, Voc, PMax, IPMax, VPMax) VALUES("+idm+","+idc+",'"+corr+"',"+isc+","+voc+","+pmax+","+ipmax+","+vpmax+");");
+    public static void anadirCorregida(int idm, int idc, String corr, float isc, float voc, float pmax, float ipmax, float vpmax) {
+        miBD.insert("INSERT INTO CORREGIDA (idm, idc, Correccion, Isc, Voc, PMax, IPMax, VPMax) VALUES(" + idm + "," + idc + ",'" + corr + "'," + isc + "," + voc + "," + pmax + "," + ipmax + "," + vpmax + ");");
     }
 }

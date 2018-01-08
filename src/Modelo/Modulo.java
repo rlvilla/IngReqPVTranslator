@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Modulo {
@@ -16,11 +15,10 @@ public class Modulo {
         this.gamma = gamma;
         this.kappa = kappa;
         this.rs = rs;
-        medidas = new ArrayList<>();
     }
 
     public String toString(){
-        return("Name: " +name+ "\nAlpha: "+alpha+"\nBeta: "+beta+"\nGamma: "+gamma+"\nKappa: "+kappa+"\n");
+        return("Name: " +name+ "\nAlpha: "+alpha+"\nBeta: "+beta+"\nGamma: "+gamma+"\nKappa: "+kappa+"\n"+"Rs: "+rs+"\n");
     }
 
     public String getName(){
