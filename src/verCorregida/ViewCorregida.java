@@ -20,7 +20,7 @@ public class ViewCorregida extends Panel {
     JFrame ventana = new JFrame("Medida Corregida");
 
     // RadioButton de los IV/PV
-    JRadioButton IV = new JRadioButton("I-V", false);
+    JRadioButton IV = new JRadioButton("I-V", true);
     JRadioButton PV = new JRadioButton("P-V", false);
     ButtonGroup group = new ButtonGroup();
     // DATOS SIN IMPORTANCIA

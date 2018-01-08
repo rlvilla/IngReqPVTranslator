@@ -53,16 +53,17 @@ public class CtrlRepresentacion implements ActionListener {
                 float ipMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getCorriente();
                 float vpMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getTension();
 
+                final JFrame window = new JFrame("Correccion");
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        ViewCorregida.createGUI(window, panel.getID());
+                    }
+                });
+
             }
             if (method.equals("IEC-60891_2")){
 
             }
-            final JFrame window = new JFrame("Correccion");
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    ViewCorregida.createGUI(window, panel.getID());
-                }
-            });
         }
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARIV)) {
             panel.mostrarIV();
