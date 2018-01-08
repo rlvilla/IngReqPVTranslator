@@ -150,9 +150,18 @@ public class PVBD {
         String[][] tablita = new String[puntos.size()][3];
         for (String[] punto : puntos) {
             for (int i = 0; i < 3; i++) {
-                tablita[Integer.parseInt(punto[2])][i] = punto[i+3];
+                tablita[Integer.parseInt(punto[2])][i] = punto[i + 3];
             }
         }
         return tablita;
+    }
+
+    public static String[][] leerListaMedidaCorregida(int idm) {
+        List<String[]> listaMed = PVBD.miBD.select("SELECT * FROM CORREGIDA WHERE idm = " + idm + ";");
+        String[][] listaMedida = new String[listaMed.size()][6];
+        for (String[] med : listaMed) {
+            listaMedida[listaMed.indexOf(med)] = new String[]{med[2], med[3], med[4], med[5], med[6], med[7]};
+        }
+        return listaMedida;
     }
 }

@@ -22,7 +22,7 @@ public class CtrlRepresentacion implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARCURVA)) {
-            panel.muestraPuntos(PVBD.leerListaPuntos(Integer.toString(idm)));
+            panel.muestraPuntos(PVBD.leerListaPuntos(Integer.toString(idm)),PVBD.leerListaMedidaCorregida(idm));
         }
         if (event.getActionCommand().equals(ViewRepresentacion.CORREGIR)) {
             String method = panel.getSelectC();

@@ -29,7 +29,7 @@ public class ViewRepresentacion extends Panel {
 
     // Modelo para que no se pueda deditar ninguna de las tablas
     String[] izquierdanombres = {"V", "I", "P"};
-    String[] inferiornombres = {"Nombre Medida", "V", "I", "P", "Correccion"};
+    String[] inferiornombres = {"Correccion", "Isc", "Voc", "PMax", "IPMax", "VPMax"};
 
     JFreeChart xyLine;
 
@@ -41,6 +41,7 @@ public class ViewRepresentacion extends Panel {
     private JTable tablaIzquierda = new JTable(model1);
     
     private String[][] tablaModel;
+    private String[][] tablaCorregidas;
 
     private JScrollPane tablaIzquierdaScroll = new JScrollPane(tablaIzquierda, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -136,13 +137,18 @@ public class ViewRepresentacion extends Panel {
         PV.addActionListener(ctr);
     }
 
-    public void muestraPuntos(String[][] tablaMod) {
+    public void muestraPuntos(String[][] tablaPuntos, String[][] tablaMedidasCorr) {
         model1.setRowCount(0);
-        tablaModel = tablaMod;
+        model2.setRowCount(0);
+        tablaModel = tablaPuntos;
+        tablaCorregidas = tablaMedidasCorr;
         XYSeries IV = new XYSeries("Representar");
         for (String[] line : tablaModel) {
             model1.addRow(line);
             IV.add(Double.parseDouble(line[1]),Double.parseDouble(line[0]));
+        }
+        for (String[] line : tablaCorregidas) {
+            model2.addRow(line);
         }
         XYSeriesCollection datos = new XYSeriesCollection();
         datos.addSeries(IV);
