@@ -72,7 +72,6 @@ public class ViewCorregida extends Panel {
 
         // Grafica (CENTRO)
         XYSeries IV = new XYSeries("Representar");
-        IV.add(1, 2);
         XYSeriesCollection datos = new XYSeriesCollection();
         datos.addSeries(IV);
         xyLine = ChartFactory.createXYLineChart("Grafica IV", "I", "V", datos, PlotOrientation.VERTICAL,
@@ -91,9 +90,9 @@ public class ViewCorregida extends Panel {
 
     }
 
-    public static void createGUI(JFrame window, int id) {
+    public static void createGUI(JFrame window, int id, int idc) {
         ViewCorregida panel = new ViewCorregida();
-        CtrlCorregida ctr = new CtrlCorregida(panel, id);
+        CtrlCorregida ctr = new CtrlCorregida(panel, id, idc);
         panel.setController(ctr);
         window.setContentPane(panel);
         ctr.actionPerformed(new ActionEvent(panel, 1, MOSTRARCORREGIDAS));

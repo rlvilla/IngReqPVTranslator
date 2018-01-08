@@ -18,13 +18,13 @@ public class CtrlCorregida implements ActionListener {
     public CtrlCorregida(ViewCorregida panel, int idm, int idc) {
         this.panel = panel;
         this.idm = idm;
-        this.idc = idc
+        this.idc = idc;
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(ViewCorregida.MOSTRARCORREGIDAS)) {
 
-            panel.muestraPuntos(PVBD.leerListaPuntos(Integer.toString(idm)));
+            panel.muestraPuntos(PVBD.leerListaPuntosCorregidos(Integer.toString(idm), Integer.toString(idc)));
         }
     }
 }

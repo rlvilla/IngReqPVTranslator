@@ -53,7 +53,7 @@ public class CtrlRepresentacion implements ActionListener {
                 float ipMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getCorriente();
                 float vpMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getTension();
 
-                PVBD.anadirCorregida(panel.getID(),idc,method+"_"+g2+"_"+t2,0,0,pMax,ipMax,vpMax);
+                PVBD.anadirCorregida(idm,idc,method+"_"+g2+"_"+t2,0,0,pMax,ipMax,vpMax);
                 for(Punto punto : nuevosPuntos) {
                     PVBD.anadirPuntoCorregido(panel.getID(), idc, punto.getOrder(), punto.getTension(), punto.getCorriente(), punto.getPotencia());
                 }
@@ -61,7 +61,7 @@ public class CtrlRepresentacion implements ActionListener {
                 final JFrame window = new JFrame("Correccion");
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        ViewCorregida.createGUI(window, panel.getID(), idc);
+                        ViewCorregida.createGUI(window, idm, idc);
                     }
                 });
 

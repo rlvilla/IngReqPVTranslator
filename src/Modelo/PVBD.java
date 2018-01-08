@@ -118,7 +118,7 @@ public class PVBD {
 
     public static List<Punto> crearListaPunto(String medida) {
         List<Punto> list = new ArrayList<>();
-        for (String[] st : PVBD.miBD.select("SELECT * FROM PUNTO WHERE idm = '" + medida + "';")) {
+        for (String[] st : PVBD.miBD.select("SELECT * FROM PUNTO WHERE idm = " + medida + ";")) {
             list.add(new Punto(Integer.parseInt(st[1]), Float.parseFloat(st[2]), Float.parseFloat(st[3]), Float.parseFloat(st[4])));
         }
         return list;
@@ -142,6 +142,17 @@ public class PVBD {
     }
 
     public static void anadirPuntoCorregido(int id, int idc, int order, float tension, float corriente, float potencia) {
-        miBD.insert("INSERT INTO PUNTO (idm, idc, orden, Tension, Corriente, Potencia) values (" + id + "," + idc + "," + order + "," + tension + "," + corriente + "," + potencia + ");");
+        miBD.insert("INSERT INTO PUNTOCORREGIDO (idm, idc, orden, Tension, Corriente, Potencia) values (" + id + "," + idc + "," + order + "," + tension + "," + corriente + "," + potencia + ");");
+    }
+
+    public static String[][] leerListaPuntosCorregidos(String idm, String idc) {
+        List<String[]> puntos = PVBD.miBD.select("SELECT * FROM PUNTOCORREGIDO WHERE idm = " + idm + " AND idc = " + idc + ";");
+        String[][] tablita = new String[puntos.size()][3];
+        for (String[] punto : puntos) {
+            for (int i = 0; i < 3; i++) {
+                tablita[Integer.parseInt(punto[2])][i] = punto[i+3];
+            }
+        }
+        return tablita;
     }
 }
