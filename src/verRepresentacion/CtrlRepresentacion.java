@@ -31,8 +31,8 @@ public class CtrlRepresentacion implements ActionListener {
                 float g1 = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT Piranometro FROM MEDIDA WHERE idm = " + idm + ";"));
                 float t1 = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT TempAmbiente FROM MEDIDA WHERE idm = " + idm + ";"));
                 //TODO pop-up para introducir g2 y t2
-                float g2 = 1000;
-                float t2 = 25;
+                float g2 = Float.parseFloat(JOptionPane.showInputDialog(panel, "Introduce Piranometro:\n", "Introducción de datos", JOptionPane.PLAIN_MESSAGE));
+                float t2 = Float.parseFloat(JOptionPane.showInputDialog(panel, "Introduce Temperatura Ambiente:\n", "Introducción de datos", JOptionPane.PLAIN_MESSAGE));
                 int idc = (method + "_" + g2 + "_" + t2).hashCode();
                 float alpha = Float.parseFloat(PVBD.miBD.selectEscalar("SELECT alpha FROM MEDIDA INNER JOIN CAMPANA" +
                         " C ON MEDIDA.Campana = C.NOMBRE INNER JOIN MODULO M ON C.MODULO = M.Nombre WHERE idm = " + idm + ";"));
@@ -54,13 +54,16 @@ public class CtrlRepresentacion implements ActionListener {
                 float ipMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getCorriente();
                 float vpMax = nuevosPuntos.get(getPMaxIndex(nuevosPuntos, pMax)).getTension();
 
-                final JFrame window = new JFrame("Correccion");
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        ViewCorregida.createGUI(window, panel.getID());
-                    }
-                });
             }
+            if (method.equals("IEC-60891_2")){
+
+            }
+            final JFrame window = new JFrame("Correccion");
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    ViewCorregida.createGUI(window, panel.getID());
+                }
+            });
         }
         if (event.getActionCommand().equals(ViewRepresentacion.MOSTRARIV)) {
             panel.mostrarIV();
