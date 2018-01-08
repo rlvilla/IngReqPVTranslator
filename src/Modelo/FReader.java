@@ -113,8 +113,12 @@ public class FReader {
         n = Integer.parseInt(sc.nextLine().split(":")[1].split("\\s+")[1]);
         sc.nextLine();//salto linea 37
         for (int i = 0; i < n; i++) {
-            String[] valores = leerLineaPuntos(sc.nextLine());
-            puntos.put("" + i, valores);
+            try {
+                String[] valores = leerLineaPuntos(sc.nextLine());
+                puntos.put("" + i, valores);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Fallo en " + fichero + " en linea " + i);
+            }
         }
         sc.close();
         try {
