@@ -90,16 +90,13 @@ public class CtrlRepresentacion implements ActionListener {
                 for(Punto punto : nuevosPuntos) {
                     PVBD.anadirPuntoCorregido(idm, idc, punto.getOrder(), punto.getTension(), punto.getCorriente(), punto.getPotencia());
                 }
-
-            }
-            if (method.equals("IEC-60891_2")){
-
                 final JFrame window = new JFrame("Correccion");
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         ViewCorregida.createGUI(window, idm, idc);
                     }
                 });
+
 
             }
             if (method.equals("IEC-60891_2")){
