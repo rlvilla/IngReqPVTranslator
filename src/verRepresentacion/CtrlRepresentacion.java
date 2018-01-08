@@ -55,7 +55,7 @@ public class CtrlRepresentacion implements ActionListener {
 
                 PVBD.anadirCorregida(idm,idc,method+"_"+g2+"_"+t2,0,0,pMax,ipMax,vpMax);
                 for(Punto punto : nuevosPuntos) {
-                    PVBD.anadirPuntoCorregido(panel.getID(), idc, punto.getOrder(), punto.getTension(), punto.getCorriente(), punto.getPotencia());
+                    PVBD.anadirPuntoCorregido(idm, idc, punto.getOrder(), punto.getTension(), punto.getCorriente(), punto.getPotencia());
                 }
 
                 final JFrame window = new JFrame("Correccion");
